@@ -45,14 +45,6 @@ module.exports = (appName, options, modules) => {
             // Do nothing
     }
     
-    if (typeof config.auth === 'function') {
-        config.auth.call(null, app, app.config);
-    }
-    
-    if (config.locals.enabled) {
-        require('../modules/locals')(app, app.config);
-    }
-    
     modules.forEach(module => {
         if (typeof module === 'function') {
             module.call(null, app, app.config);

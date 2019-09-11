@@ -25,14 +25,9 @@ module.exports = {
     view: {
         cache: false
     },
-    auth: null,
     handleError: {
         enabled: false,
         debug: true,
         isJson: false
-    },
-    locals: {
-        enabled: false,
-        custom: null
     }
 };

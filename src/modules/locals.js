@@ -11,7 +11,7 @@ module.exports = (app, config) => {
             
             edge.global('layoutName', `layout/${app.id}Layout`);
             
-            typeof config.locals.custom === 'function' && config.locals.custom.call(null, edge, req);
+            typeof config.locals === 'function' && config.locals.call(null, edge, req);
         }
         
         return next();
