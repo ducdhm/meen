@@ -67,3 +67,7 @@ Example:
 ```javascript
 resolvePath('public', 'image');
 ```
+
+
+## License
+Please read at [here](./LICENSE.md)
