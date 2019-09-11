@@ -6,7 +6,7 @@
     "scripts": {},
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ducdhm/meen.git"
+        "url": "git+https://github.com/ducdhm/meen-core.git"
     },
     "keywords": [
         "meen",
@@ -18,9 +18,9 @@
     "author": "ducdhm@gmail.com",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/ducdhm/meen/issues"
+        "url": "https://github.com/ducdhm/meen-core/issues"
     },
-    "homepage": "https://github.com/ducdhm/meen#readme",
+    "homepage": "https://github.com/ducdhm/meen-core#readme",
     "dependencies": {
         "body-parser": "^1.19.0",
         "colors": "^1.3.3",
