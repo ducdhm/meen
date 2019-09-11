@@ -1,0 +1,44 @@
+{
+    "name": "meen",
+    "version": "1.0.0",
+    "description": "MongoDB ExpressJS EdgeJS NodeJS",
+    "main": "index.js",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ducdhm/meen.git"
+    },
+    "keywords": [
+        "meen",
+        "mongodb",
+        "nodejs",
+        "expressjs",
+        "edgejs"
+    ],
+    "author": "ducdhm@gmail.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ducdhm/meen/issues"
+    },
+    "homepage": "https://github.com/ducdhm/meen#readme",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "colors": "^1.3.3",
+        "compression": "^1.7.4",
+        "connect-ensure-login": "^0.1.1",
+        "cookie-parser": "^1.4.4",
+        "cors": "^2.8.5",
+        "deep-extend": "^0.6.0",
+        "express": "^4.17.1",
+        "express-edge": "^2.0.0",
+        "express-minify-html-2": "^1.0.1",
+        "express-session": "^1.16.2",
+        "get-root-path": "^2.0.2",
+        "mongoose": "^5.7.0",
+        "morgan": "^1.9.1",
+        "nodemon": "^1.19.2",
+        "q": "^1.5.1",
+        "winston": "^3.2.1",
+        "winston-daily-rotate-file": "^4.1.0"
+    }
+}
