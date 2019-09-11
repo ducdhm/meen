@@ -1,6 +1,6 @@
 // CORS setup
 // --------------------------------
-const cors = require('src/modules/cors');
+const cors = require('cors');
 module.exports = (app, config) => {
     app.use(
         cors(config.cors)
