@@ -8,7 +8,6 @@ module.exports = {
     session: require('./modules/session'),
     publicFolder: require('./modules/publicFolder'),
     view: require('./modules/view'),
-    locals: require('./modules/locals'),
 
     handleError: require('./core/handleError'),
 

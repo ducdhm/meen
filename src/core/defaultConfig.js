@@ -5,7 +5,8 @@ module.exports = {
     mongoose: {
         debug: false,
         options: {
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            useUnifiedTopology: true
         }
     },
     cors: '*',

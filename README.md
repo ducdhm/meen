@@ -14,7 +14,10 @@ M.E.E.N = MongoDB + ExpressJS + EdgeJS + NodeJS
 composeApp(appName, config, modules);
 ```
 
-**Note**: You can see default config at [here](./src/core/defaultConfig.js) 
+**Note**: Order of configuration as the following:
+  1. [Default](./src/core/defaultConfig.js)
+  1. `/config/app.js` (will be loaded if available)
+  1. `config` param 
 
 
 ## Built-in modules
