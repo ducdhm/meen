@@ -4,7 +4,7 @@ module.exports = {
     formatter: require('./formatter'),
     getUploadFileName: require('./getUploadFileName'),
     logger: require('./logger'),
-    menuUtil: require('./menuUtil'),
-    modelUtil: require('./modelUtil'),
+    buildMenu: require('./buildMenu'),
+    composeModel: require('./composeModel'),
     resolvePath: require('./resolvePath'),
 };
