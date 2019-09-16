@@ -5,6 +5,6 @@ module.exports = {
     getUploadFileName: require('./getUploadFileName'),
     logger: require('./logger'),
     buildMenu: require('./buildMenu'),
-    composeModel: require('./composeModel'),
+    enhanceModel: require('./enhanceModel'),
     resolvePath: require('./resolvePath'),
 };

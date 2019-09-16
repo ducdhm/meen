@@ -12,6 +12,7 @@ module.exports = {
     handleError: require('./core/handleError'),
 
     composeApp: require('./core/composeApp'),
+    composeModel: require('./core/composeModel'),
 
     utils: require('./utils'),
 };
