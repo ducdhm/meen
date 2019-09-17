@@ -66,7 +66,7 @@ module.exports = (appName, config, modules) => {
     });
 
     if (appConfig.handleError.enabled) {
-        require('./handleError')(app, appConfig);
+        require('../utils/handleError')(app, appConfig);
     }
 
     return app;

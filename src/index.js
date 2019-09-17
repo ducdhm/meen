@@ -9,7 +9,7 @@ module.exports = {
     publicFolder: require('./modules/publicFolder'),
     view: require('./modules/view'),
 
-    handleError: require('./core/handleError'),
+    handleError: require('./utils/handleError'),
 
     composeApp: require('./core/composeApp'),
     composeModel: require('./core/composeModel'),
