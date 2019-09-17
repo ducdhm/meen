@@ -9,8 +9,8 @@ module.exports = (modelName, schemaOptions, options, dontEnhance) => {
         for (let [key, value] of Object.entries(options.virtual)) {
             let virtual = schema.virtual(key);
 
-            if (typeof virtual === 'function') {
-                virtual.get(virtual);
+            if (typeof value === 'function') {
+                virtual.get(value);
             } else {
                 let getter = value.get;
                 typeof getter === 'function' && virtual.get(getter);
