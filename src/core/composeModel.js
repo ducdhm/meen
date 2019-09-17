@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const enhanceModel = require('../utils/enhanceModel');
 
-export default (modelName, schemaOptions, options, dontEnhance) => {
+export default (modelName, schemaOptions, { virtual, plugins, index }, dontEnhance) => {
     let schema = new mongoose.Schema(schemaOptions, { timestamps: true });
 
     // Virtual
-    if (options && options.virtual) {
+    if (virtual) {
         for (let [key, value] of Object.entries(options.virtual)) {
             let virtual = schema.virtual(key);
 
@@ -18,14 +18,14 @@ export default (modelName, schemaOptions, options, dontEnhance) => {
     }
 
     // Plugins
-    if (options && Array.isArray(options.plugins)) {
+    if (Array.isArray(options.plugins)) {
         options.plugins.map((plugin) => {
             schema.plugin(plugin);
         });
     }
 
     // Index
-    if (options && options.index) {
+    if (options.index) {
         schema.index(options.index);
     }
 

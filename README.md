@@ -18,6 +18,32 @@ composeApp(appName, config, modules);
   1. [Default](./src/core/defaultConfig.js)
   1. `/config/app.js` (will be loaded if available)
   1. `config` param 
+  
+  
+### `composeModel`
+```javascript
+/**
+ * Compose a Mongoose model
+ * @param {String} modelName Name of model
+ * @param {Object} schemaOptions Schema options of mongoose
+ * @param {Object} options
+ * @param {Object} options.index Equals with `mongooseSchema.index` method
+ * @param {Object} options.virtual List of virtual properties with key is name of virtual and value is virtual options. If you pass value as function, it will be getter. Example: 
+ * virtual = {
+ *     url: {
+ *         get: function () {
+ *             return `/url/${this._id}`;
+ *         }
+ *     },
+ *     type: function () {
+ *         return this.type;
+ *     }
+ * }
+ * @param {Array} options.plugins Each plugin will be passed via `mongooseSchema.plugin` method
+ * @param {Boolean} dontEnhance Allow to enhance model with `utils/enhanceModel` method or not
+ */
+composeModel(modelName, schemaOptions, options, dontEnhance);
+```
 
 
 ## Built-in modules
