@@ -30,6 +30,7 @@ module.exports = (appName, config, modules) => {
 
     switch (appConfig.preset) {
         case 'website':
+            require('../modules/dotenv')(app, appConfig);
             require('../modules/compression')(app, appConfig);
             require('../modules/publicFolder')(app, appConfig);
             require('../modules/view')(app, appConfig);
@@ -40,6 +41,7 @@ module.exports = (appName, config, modules) => {
             break;
 
         case 'api':
+            require('../modules/dotenv')(app, appConfig);
             require('../modules/cors')(app, appConfig);
             require('../modules/bodyParser')(app, appConfig);
             require('../modules/mongoose')(app, appConfig);
