@@ -34,7 +34,15 @@ const myFormat = printf(info => {
     return `[${timestamp}]  [${level}]  [${label}]  ${message}`;
 });
 
-function getLogger(category, appName = 'application', level = 'debug', logFile = false) {
+function getLogger(category, appName = 'M.E.E.N', level, logFile) {
+    if (typeof level === 'undefined') {
+        level = process.env.LOG_LEVEL || 'debug';
+    }
+
+    if (typeof logFile === 'undefined') {
+        logFile = process.env.LOG_FILE || false;
+    }
+
     let appTransports = [
         new transports.Console({
             level: level

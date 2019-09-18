@@ -1,4 +1,4 @@
-const logger = require('./logger')('utils/errorHandlers');
+const logger = require('./getLogger')('utils/errorHandlers');
 
 const errorHandlers = {
     newError: (code = 500, msg) => {

@@ -7,13 +7,10 @@ module.exports = {
         options: {
             useNewUrlParser: true,
             useUnifiedTopology: true
-        }
+        },
+        itemPerPage: 20
     },
     cors: '*',
-    logger: {
-        level: 'debug',
-        logFile: false
-    },
     session: {
         secret: 'M.E.E.N',
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
@@ -22,8 +19,8 @@ module.exports = {
     publicFolder: {
         path: resolvePath('public')
     },
-    minify: false,
     view: {
+        minify: false,
         cache: false
     },
     handleError: {

@@ -1,12 +1,12 @@
 // Connect to our database
 // --------------------------------
-const mongooseLogger = require('../utils/logger')('MONGOOSE');
 const mongoose = require('mongoose');
+const logger = require('../utils/getLogger')('MONGOOSE');
 module.exports = (app, config) => {
     mongoose.set('useCreateIndex', true);
     
     config.mongoose.debug && mongoose.set('debug', (collection, method, query, doc) => {
-        mongooseLogger.debug('"%s" in "%s" \n%o', method, collection, {
+        logger.debug('"%s" in "%s" \n%o', method, collection, {
             query,
             doc
         });

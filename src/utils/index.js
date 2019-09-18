@@ -3,7 +3,7 @@ module.exports = {
     errorHandlers: require('./errorHandlers'),
     formatter: require('./formatter'),
     getUploadFileName: require('./getUploadFileName'),
-    logger: require('./logger'),
+    getLogger: require('./getLogger'),
     buildMenu: require('./buildMenu'),
     enhanceModel: require('./enhanceModel'),
     resolvePath: require('./resolvePath'),

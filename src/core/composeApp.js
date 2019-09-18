@@ -1,30 +1,22 @@
 const express = require('express');
-const deepExtend = require('deep-extend');
-const logger = require('../utils/logger');
-const defaultConfig = require('./defaultConfig');
-const resolvePath = require('../utils/resolvePath');
+const getLogger = require('../utils/getLogger');
+const getConfig = require('../utils/getConfig');
 
 module.exports = (appName, config, modules) => {
-    const log = logger('composeApp', 'M.E.E.N');
-
     if (typeof modules === 'undefined') {
         modules = config;
         config = {};
     }
 
-    let fileConfig;
-    try {
-        fileConfig = require(resolvePath('config', 'app.js'));
-    } catch (e) {
-        log.warn(`"/config/app.js" file does not exist`);
-    }
+    const appConfig = getConfig(config);
+    const logger = getLogger('composeApp');
 
     const app = express();
     app.id = appName;
-    let appConfig = app.config = deepExtend(defaultConfig, fileConfig, config);
+    app.config = appConfig;
 
     app.logger = (category) => {
-        return logger(category, appName, appConfig.logger.level, appConfig.logger.logFile);
+        return getLogger(category, appName);
     };
 
     app.run = () => {
@@ -32,14 +24,13 @@ module.exports = (appName, config, modules) => {
 
         app.listen(
             appPort,
-            () => log.info(`Webserver started at http://localhost:${appPort}`)
+            () => logger.info(`Webserver started at http://localhost:${appPort}`)
         );
     };
 
     switch (appConfig.preset) {
         case 'website':
             require('../modules/compression')(app, appConfig);
-            require('../modules/minify')(app, appConfig);
             require('../modules/publicFolder')(app, appConfig);
             require('../modules/view')(app, appConfig);
             require('../modules/session')(app, appConfig);

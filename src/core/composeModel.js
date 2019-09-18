@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
+const getConfig = require('../utils/getConfig');
 const enhanceModel = require('../utils/enhanceModel');
 
-module.exports = (modelName, schemaOptions, options, dontEnhance) => {
-    let schema = new mongoose.Schema(schemaOptions, { timestamps: true });
+module.exports = (modelName, schema, options, dontEnhance) => {
+    const modelConfig = getConfig({});
+    
+    let modelSchema = new mongoose.Schema(schema, { timestamps: true });
 
     // Virtual
     if (options && options.virtual) {
         for (let [key, value] of Object.entries(options.virtual)) {
-            let virtual = schema.virtual(key);
+            let virtual = modelSchema.virtual(key);
 
             if (typeof value === 'function') {
                 virtual.get(value);
@@ -24,15 +27,15 @@ module.exports = (modelName, schemaOptions, options, dontEnhance) => {
     // Plugins
     if (options && Array.isArray(options.plugins)) {
         options.plugins.map((plugin) => {
-            schema.plugin(plugin);
+            modelSchema.plugin(plugin);
         });
     }
 
     // Index
     if (options && options.index) {
-        schema.index(options.index);
+        modelSchema.index(options.index);
     }
 
-    const Model = mongoose.model(modelName, schema);
-    return dontEnhance ? Model : enhanceModel(Model);
+    const Model = mongoose.model(modelName, modelSchema);
+    return dontEnhance ? Model : enhanceModel(Model, modelConfig.mongoose.itemPerPage);
 };

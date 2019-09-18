@@ -25,11 +25,12 @@ composeApp(appName, config, modules);
 /**
  * Compose a Mongoose model
  * @param {String} modelName Name of model
- * @param {Object} schemaOptions Schema options of mongoose
+ * @param {Object} schema Schema options of mongoose
  * @param {Object} options
  * @param {Object} options.index Equals with `mongooseSchema.index` method
- * @param {Object} options.virtual List of virtual properties with key is name of virtual and value is virtual options. If you pass value as function, it will be getter. Example: 
- * virtual = {
+ * @param {Object} options.virtual List of virtual properties with key is name of virtual and value is virtual options. If you pass value as function, it will be getter. 
+ * Example: 
+ * {
  *     url: {
  *         get: function () {
  *             return `/url/${this._id}`;
@@ -42,7 +43,7 @@ composeApp(appName, config, modules);
  * @param {Array} options.plugins Each plugin will be passed via `mongooseSchema.plugin` method
  * @param {Boolean} dontEnhance Allow to enhance model with `utils/enhanceModel` method or not
  */
-composeModel(modelName, schemaOptions, options, dontEnhance);
+composeModel(modelName, schema, options, dontEnhance);
 ```
 
 
@@ -53,8 +54,6 @@ Modules list:
  * [bodyParser](./src/modules/bodyParser.js)
  * [compression](./src/modules/compression.js)
  * [cors](./src/modules/cors.js)
- * [locals](./src/modules/locals.js)
- * [minify](./src/modules/minify.js)
  * [mongoose](./src/modules/mongoose.js)
  * [morgan](./src/modules/morgan.js)
  * [publicFolder](./src/modules/publicFolder.js)
@@ -67,7 +66,6 @@ MEEN provides presets for app types via `config.app.preset`. Order of modules wi
 
 ### `website`:  
  1. [compression](./src/modules/compression.js)
- 1. [minify](./src/modules/minify.js)
  1. [publicFolder](./src/modules/publicFolder.js)
  1. [view](./src/modules/view.js)
  1. [session](./src/modules/session.js)
