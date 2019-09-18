@@ -40,7 +40,7 @@ function getLogger(category, appName = 'M.E.E.N', level, logFile) {
     }
 
     if (typeof logFile === 'undefined') {
-        logFile = process.env.LOG_FILE || false;
+        logFile = process.env.LOG_FILE === 'true' || false;
     }
 
     let appTransports = [
