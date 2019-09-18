@@ -36,7 +36,7 @@ const myFormat = printf(info => {
 
 function getLogger(category, appName = 'M.E.E.N', level, logFile) {
     if (typeof level === 'undefined') {
-        level = process.env.LOG_LEVEL || 'debug';
+        level = process.env.LOG_LEVEL || 'info';
     }
 
     if (typeof logFile === 'undefined') {
