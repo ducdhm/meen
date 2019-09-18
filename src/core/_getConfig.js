@@ -3,7 +3,7 @@ const resolvePath = require('../utils/resolvePath');
 const defaultConfig = require('./defaultConfig');
 const logger = require('../utils/getLogger')('utils/getConfig');
 
-module.exports = (config) => {
+module.exports = (config = {}) => {
     let fileConfig;
     try {
         fileConfig = require(resolvePath('config', 'app.js'));

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const getConfig = require('./getConfig');
+const getConfig = require('./_getConfig');
 const enhanceModel = require('../utils/enhanceModel');
 
 module.exports = (modelName, schema, options, dontEnhance) => {
-    const modelConfig = getConfig({});
+    const modelConfig = getConfig();
     
     let modelSchema = new mongoose.Schema(schema, { timestamps: true });
 
