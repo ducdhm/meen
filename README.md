@@ -59,6 +59,7 @@ Modules list:
  * [publicFolder](./src/modules/publicFolder.js)
  * [session](./src/modules/session.js)
  * [view](./src/modules/view.js)
+ * [dotenv](./src/modules/dotenv.js)
  
  
 ## Presets
@@ -72,12 +73,14 @@ MEEN provides presets for app types via `config.app.preset`. Order of modules wi
  1. [bodyParser](./src/modules/bodyParser.js)
  1. [mongoose](./src/modules/mongoose.js)
  1. [morgan](./src/modules/morgan.js)
+ 1. [dotenv](./src/modules/dotenv.js)
    
 ### `api`: 
  1. [cors](./src/modules/cors.js)
  1. [bodyParser](./src/modules/bodyParser.js)
  1. [mongoose](./src/modules/mongoose.js)
  1. [morgan](./src/modules/morgan.js)
+ 1. [dotenv](./src/modules/dotenv.js)
 
 
 ## Utils

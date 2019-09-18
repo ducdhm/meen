@@ -7,6 +7,7 @@ module.exports = {
     session: require('./modules/session'),
     publicFolder: require('./modules/publicFolder'),
     view: require('./modules/view'),
+    dotenv: require('./modules/dotenv'),
 
     handleError: require('./utils/handleError'),
 
