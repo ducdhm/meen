@@ -35,7 +35,6 @@
         "get-root-path": "^2.0.2",
         "mongoose": "^5.7.0",
         "morgan": "^1.9.1",
-        "nodemon": "^1.19.2",
         "q": "^1.5.1",
         "winston": "^3.2.1",
         "winston-daily-rotate-file": "^4.1.0"
