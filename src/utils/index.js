@@ -1,10 +1,11 @@
 module.exports = {
+    buildMenu: require('./buildMenu'),
+    enhanceModel: require('./enhanceModel'),
     ensureArray: require('./ensureArray'),
     errorHandlers: require('./errorHandlers'),
     formatter: require('./formatter'),
-    getUploadFileName: require('./getUploadFileName'),
     getLogger: require('./getLogger'),
-    buildMenu: require('./buildMenu'),
-    enhanceModel: require('./enhanceModel'),
+    getUploadFileName: require('./getUploadFileName'),
+    handleError: require('./handleError'),
     resolvePath: require('./resolvePath'),
 };

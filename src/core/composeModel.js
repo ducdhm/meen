@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const getConfig = require('../utils/getConfig');
+const getConfig = require('./getConfig');
 const enhanceModel = require('../utils/enhanceModel');
 
 module.exports = (modelName, schema, options, dontEnhance) => {

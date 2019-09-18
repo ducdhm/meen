@@ -1,7 +1,7 @@
 const deepExtend = require('deep-extend');
-const resolvePath = require('./resolvePath');
-const defaultConfig = require('../core/defaultConfig');
-const logger = require('./getLogger')('utils/getConfig');
+const resolvePath = require('../utils/resolvePath');
+const defaultConfig = require('./defaultConfig');
+const logger = require('../utils/getLogger')('utils/getConfig');
 
 module.exports = (config) => {
     let fileConfig;

@@ -1,7 +1,8 @@
 require('dotenv').config();
+
 const express = require('express');
 const getLogger = require('../utils/getLogger');
-const getConfig = require('../utils/getConfig');
+const getConfig = require('./getConfig');
 
 module.exports = (appName, config, modules) => {
     if (typeof modules === 'undefined') {
