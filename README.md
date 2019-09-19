@@ -54,6 +54,7 @@ Modules list:
  * [bodyParser](./src/modules/bodyParser.js)
  * [compression](./src/modules/compression.js)
  * [cors](./src/modules/cors.js)
+ * [handleError](./src/modules/handleError.js)
  * [mongoose](./src/modules/mongoose.js)
  * [morgan](./src/modules/morgan.js)
  * [publicFolder](./src/modules/publicFolder.js)

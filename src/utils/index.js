@@ -6,6 +6,5 @@ module.exports = {
     formatter: require('./formatter'),
     getLogger: require('./getLogger'),
     getUploadFileName: require('./getUploadFileName'),
-    handleError: require('./handleError'),
     resolvePath: require('./resolvePath'),
 };
