@@ -1,4 +1,4 @@
-const errorHandlers = require('./errorHandlers');
+const errorHandlers = require('../utils/errorHandlers');
 
 module.exports = (app, config) => {
     const log = app.logger('ERROR');
