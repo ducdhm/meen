@@ -1,9 +1,7 @@
 const ObjectId = require('mongoose').Types.ObjectId;
 const logger = require('./getLogger')('utils/enhanceModel');
 
-module.exports = (Model, modelOptions) => {
-    const {itemPerPage} = modelOptions;
-
+module.exports = (Model, itemPerPage) => {
     const makeQueryBuilder = (model, options = {}, findOne) => {
         logger.debug('makeQueryBuilder options=%o', options);
 
