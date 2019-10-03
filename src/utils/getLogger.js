@@ -1,8 +1,9 @@
 const resolvePath = require('./resolvePath');
-const {loggers, format, transports} = require('winston');
-const {combine, timestamp, printf, splat, label} = format;
+const { loggers, format, transports } = require('winston');
+const { combine, timestamp, printf, splat, label } = format;
 const colors = require('colors/safe');
 require('winston-daily-rotate-file');
+const split = require('split');
 
 const myFormat = printf(info => {
     let timestamp = colors.yellow(info.timestamp);
@@ -11,26 +12,26 @@ const myFormat = printf(info => {
         case 'DEBUG':
             level = colors.cyan(level);
             break;
-            
+
         case 'INFO':
             level = colors.blue(level);
             break;
-            
+
         case 'WARN':
             level = colors.yellow(level);
             break;
-            
+
         case 'ERROR':
             level = colors.red(level);
             break;
-            
+
         default:
-            // Do nothing
+        // Do nothing
     }
-    
+
     let label = info.label;
     let message = info.message;
-    
+
     return `[${timestamp}]  [${level}]  [${label}]  ${message}`;
 });
 
@@ -60,25 +61,23 @@ function getLogger(category, appName = 'M.E.E.N', level, logFile) {
             })
         );
     }
-    
+
     loggers.add(category, {
         format: combine(
             timestamp(),
-            label({label: category}),
+            label({ label: category }),
             splat(),
             myFormat,
         ),
         transports: appTransports,
         exitOnError: false
     });
-    
+
     const logger = loggers.get(category);
-    logger.stream = {
-        write: (message) => {
-            logger.info(message);
-        }
-    };
-    
+    logger.stream = split().on('data', function (message) {
+        logger.info(message);
+    });
+
     return logger;
 }
 

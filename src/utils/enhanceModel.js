@@ -2,7 +2,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const logger = require('./getLogger')('utils/enhanceModel');
 
 module.exports = (Model, itemPerPage) => {
-    const makeQueryBuilder = (model, options = {}, findOne) => {
+    const makeQueryBuilder = (options = {}, findOne) => {
         logger.debug('makeQueryBuilder options=%o', options);
 
         let {
@@ -12,7 +12,7 @@ module.exports = (Model, itemPerPage) => {
             page,
             select
         } = options;
-        let queryBuilder = model[findOne ? 'findOne' : 'find'](query);
+        let queryBuilder = Model[findOne ? 'findOne' : 'find'](query);
 
         populate && queryBuilder.populate(populate);
         sort && queryBuilder.sort(sort);
@@ -43,12 +43,12 @@ module.exports = (Model, itemPerPage) => {
         create: (payload) => new Model(payload),
         count: (query) => Model.countDocuments(query).exec(),
         totalPage: (query) => Model.countDocuments(query).exec().then(total => Math.ceil(total / itemPerPage)),
-        find: (options) => makeQueryBuilder(Model, options).exec(),
+        find: (options) => makeQueryBuilder(options).exec(),
         findById: (id) => Model.findById(id).exec(),
-        findOne: (options) => makeQueryBuilder(Model, options, true).exec(),
+        findOne: (options) => makeQueryBuilder(options, true).exec(),
         delete: (record) => record.delete(),
         deleteById: (id) => Model.deleteOne({_id: id}),
         save: (record, payload, populateFn) => saveRecord(record, payload, populateFn),
-        isValidId: (id) => ObjectId.isValid(id)
+        isValidId: (id) => ObjectId.isValid(id),
     }
 };

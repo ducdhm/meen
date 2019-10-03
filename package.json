@@ -1,6 +1,6 @@
 {
     "name": "meen-core",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "M.E.E.N = MongoDB + ExpressJS + EdgeJS + NodeJS",
     "main": "index.js",
     "scripts": {},
@@ -37,6 +37,7 @@
         "mongoose": "^5.7.0",
         "morgan": "^1.9.1",
         "q": "^1.5.1",
+        "split": "^1.0.1",
         "winston": "^3.2.1",
         "winston-daily-rotate-file": "^4.1.0"
     }
