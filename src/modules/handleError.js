@@ -1,4 +1,4 @@
-const errorHandlers = require('../utils/errorHandlers');
+const { errorHandlers } = require('meen-utils');
 
 module.exports = (app, config) => {
     const log = app.logger('ERROR');

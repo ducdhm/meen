@@ -1,6 +1,6 @@
 {
     "name": "meen-core",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "description": "M.E.E.N = MongoDB + ExpressJS + EdgeJS + NodeJS",
     "main": "index.js",
     "scripts": {},
@@ -15,7 +15,7 @@
         "expressjs",
         "edgejs"
     ],
-    "author": "ducdhm@gmail.com",
+    "author": "Duc Doan <ducdhm@gmail.com>",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/ducdhm/meen-core/issues"
@@ -23,7 +23,6 @@
     "homepage": "https://github.com/ducdhm/meen-core#readme",
     "dependencies": {
         "body-parser": "^1.19.0",
-        "colors": "^1.3.3",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.4",
         "cors": "^2.8.5",
@@ -33,13 +32,9 @@
         "express-edge": "^2.0.0",
         "express-minify-html-2": "^1.0.1",
         "express-session": "^1.16.2",
-        "get-root-path": "^2.0.2",
+        "meen-utils": "^1.0.0",
         "mongoose": "^5.7.0",
         "morgan": "^1.9.1",
-        "q": "^1.5.1",
-        "split": "^1.0.1",
-        "winston": "^3.2.1",
-        "winston-daily-rotate-file": "^4.1.0",
-        "xlsx": "^0.15.1"
+        "q": "^1.5.1"
     }
 }

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const getConfig = require('./_getConfig');
-const enhanceModel = require('../utils/enhanceModel');
+const { enhanceModel } = require('meen-utils');
 
 module.exports = (modelName, schema, options, dontEnhance) => {
     const modelConfig = getConfig();
-    
+
     let modelSchema = new mongoose.Schema(schema, { timestamps: true });
 
     // Virtual
