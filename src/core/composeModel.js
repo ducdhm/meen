@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const getConfig = require('./_getConfig');
-const { enhanceModel } = require('meen-utils');
+const getConfig = require('../utils/getConfig');
+const enhanceModel = require('../utils/enhanceModel');
 
 module.exports = (modelName, schema, options, dontEnhance) => {
     const modelConfig = getConfig();
