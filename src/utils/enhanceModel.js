@@ -1,5 +1,6 @@
 const ObjectId = require('mongoose').Types.ObjectId;
-const logger = require('./getLogger')('utils/enhanceModel');
+const { getLogger } = require('meen-utils');
+const logger = getLogger('utils/enhanceModel');
 
 module.exports = (Model, itemPerPage) => {
     const makeQueryBuilder = (options = {}, findOne) => {
@@ -10,7 +11,7 @@ module.exports = (Model, itemPerPage) => {
             populate,
             sort,
             page,
-            select
+            select,
         } = options;
         let queryBuilder = Model[findOne ? 'findOne' : 'find'](query);
 
@@ -47,7 +48,7 @@ module.exports = (Model, itemPerPage) => {
         findById: (id) => Model.findById(id).exec(),
         findOne: (options) => makeQueryBuilder(options, true).exec(),
         delete: (record) => record.delete(),
-        deleteById: (id) => Model.deleteOne({_id: id}),
+        deleteById: (id) => Model.deleteOne({ _id: id }),
         save: (record, payload, populateFn) => saveRecord(record, payload, populateFn),
         isValidId: (id) => ObjectId.isValid(id),
     }
