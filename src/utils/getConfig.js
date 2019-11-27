@@ -1,7 +1,7 @@
 const deepExtend = require('deep-extend');
-const resolvePath = require('../utils/resolvePath');
-const defaultConfig = require('meen-core/src/core/defaultConfig');
-const logger = require('../utils/getLogger')('utils/getConfig');
+const {resolvePath, getLogger} = require('meen-utils');
+const defaultConfig = require('../core/defaultConfig');
+const logger = getLogger('utils/getConfig');
 
 module.exports = (config = {}) => {
     let fileConfig;
