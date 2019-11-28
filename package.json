@@ -32,9 +32,12 @@
         "express-edge": "^2.0.0",
         "express-minify-html-2": "^1.0.1",
         "express-session": "^1.16.2",
-        "meen-utils": "^1.0.1",
+        "meen-utils": "^1.0.3",
         "mongoose": "^5.7.0",
         "morgan": "^1.9.1",
         "q": "^1.5.1"
+    },
+    "devDependencies": {
+        "handlebars": "^4.5.3"
     }
 }
