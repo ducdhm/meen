@@ -1,15 +1,14 @@
 // Connect to our database
 // --------------------------------
 const mongoose = require('mongoose');
-const { getLogger } = require('meen-utils');
-const logger = getLogger('MONGOOSE');
 module.exports = (app, config) => {
+    const logger = app.logger('MONGOOSE');
     mongoose.set('useCreateIndex', true);
 
     config.mongoose.debug && mongoose.set('debug', (collection, method, query, doc) => {
         logger.debug('"%s" in "%s" \n%o', method, collection, {
             query,
-            doc
+            doc,
         });
     });
 

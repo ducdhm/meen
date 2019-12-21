@@ -7,6 +7,6 @@ module.exports = (app) => {
 
     // for parsing application/x-www-form-urlencoded
     app.use(bodyParser.urlencoded({
-        extended: true
+        extended: true,
     }));
 };

@@ -19,7 +19,7 @@ module.exports = (app, config) => {
             collapseBooleanAttributes: true,
             removeAttributeQuotes: true,
             removeEmptyAttributes: true,
-            minifyJS: true
-        }
+            minifyJS: true,
+        },
     }));
 };

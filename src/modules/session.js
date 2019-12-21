@@ -12,7 +12,7 @@ module.exports = (app, config) => {
             cookie: {
                 expires: config.session.expires,
                 maxAge: config.session.maxAge,
-            }
-        })
+            },
+        }),
     );
 };

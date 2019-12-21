@@ -33,7 +33,7 @@ module.exports = (app, config) => {
                 debugMode: debugMode,
                 title: error.code,
                 bodyClass: 'page-error',
-                app: config.app
+                app: config.app,
             });
         }
     });

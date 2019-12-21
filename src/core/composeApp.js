@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
-const { getLogger} = require('meen-utils');
+const { getLogger } = require('meen-utils');
 const getConfig = require('../utils/getConfig');
 
 module.exports = (appName, config, modules) => {
@@ -26,7 +26,7 @@ module.exports = (appName, config, modules) => {
 
         app.listen(
             appPort,
-            () => logger.info(`Webserver started at http://localhost:${appPort}`)
+            () => logger.info(`Webserver started at http://localhost:${appPort}`),
         );
     };
 
