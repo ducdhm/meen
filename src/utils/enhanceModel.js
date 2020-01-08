@@ -12,12 +12,14 @@ module.exports = (Model, itemPerPage) => {
             sort,
             page,
             select,
+            limit,
         } = options;
         let queryBuilder = Model[findOne ? 'findOne' : 'find'](query);
 
         populate && queryBuilder.populate(populate);
         sort && queryBuilder.sort(sort);
         select && queryBuilder.select(select);
+        limit && queryBuilder.limit(limit);
         page && queryBuilder.skip((itemPerPage * page) - itemPerPage).limit(itemPerPage);
 
         return queryBuilder;
