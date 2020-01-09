@@ -2,6 +2,10 @@ const { resolvePath } = require('meen-utils');
 
 module.exports = {
     preset: null,
+    info: {
+        title: 'M.E.E.N',
+        version: '1.0.0',
+    },
     mongoose: {
         debug: false,
         options: {

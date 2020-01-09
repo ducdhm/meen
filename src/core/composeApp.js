@@ -22,11 +22,11 @@ module.exports = (appName, config, modules) => {
     };
 
     app.run = () => {
-        let appPort = appConfig[`${appName}Port`];
+        let appPort = appConfig.port[appName];
 
         app.listen(
             appPort,
-            () => logger.info(`Webserver started at http://localhost:${appPort}`),
+            () => logger.info(`Server "${appName}" (v${appConfig.info.version}) server started at http://localhost:${appPort}`),
         );
     };
 
