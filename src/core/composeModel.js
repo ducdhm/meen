@@ -44,5 +44,13 @@ module.exports = (modelName, schema, options, dontEnhance) => {
     }
 
     const Model = mongoose.model(modelName, modelSchema);
+
+    // Static
+    if (options && options.static) {
+        for (let [key, value] of Object.entries(options.set)) {
+            Model[key] = value;
+        }
+    }
+
     return dontEnhance ? Model : enhanceModel(Model, modelConfig.mongoose.itemPerPage);
 };
