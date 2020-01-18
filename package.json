@@ -1,6 +1,6 @@
 {
     "name": "meen-core",
-    "version": "1.3.1",
+    "version": "1.3.3",
     "description": "M.E.E.N = MongoDB + ExpressJS + EdgeJS + NodeJS",
     "main": "index.js",
     "scripts": {},

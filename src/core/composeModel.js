@@ -47,7 +47,7 @@ module.exports = (modelName, schema, options, dontEnhance) => {
 
     // Static
     if (options && options.static) {
-        for (let [key, value] of Object.entries(options.set)) {
+        for (let [key, value] of Object.entries(options.static)) {
             Model[key] = value;
         }
     }
