@@ -41,6 +41,9 @@ composeApp(appName, config, modules);
  *     }
  * }
  * @param {Array} options.plugins Each plugin will be passed via `mongooseSchema.plugin` method
+ * @param {Object} options.index Same as `mongooseSchema.index` method
+ * @param {Object} options.set Same as `mongooseSchema.set` method
+ * @param {Object} options.static Static properties will be added to model
  */
 composeModel(modelName, schema, options, dontEnhance);
 ```

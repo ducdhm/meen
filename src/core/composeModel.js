@@ -15,7 +15,7 @@ module.exports = (modelName, schema, options) => {
                 typeof getter === 'function' && virtual.get(getter);
 
                 let setter = value.set;
-                typeof setter === 'function' && virtual.get(setter);
+                typeof setter === 'function' && virtual.set(setter);
             }
         }
     }
