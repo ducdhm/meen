@@ -41,7 +41,6 @@ composeApp(appName, config, modules);
  *     }
  * }
  * @param {Array} options.plugins Each plugin will be passed via `mongooseSchema.plugin` method
- * @param {Boolean} dontEnhance Allow to enhance model with `utils/enhanceModel` method or not
  */
 composeModel(modelName, schema, options, dontEnhance);
 ```
@@ -79,21 +78,45 @@ MEEN provides presets for app types via `config.app.preset`. Order of modules wi
  1. [bodyParser](./src/modules/bodyParser.js)
  1. [mongoose](./src/modules/mongoose.js)
  1. [morgan](./src/modules/morgan.js)
-
-
-## Utils
-### `resolvePath`
+ 
+## Default configuration
 ```javascript
-/**
- * Resolve path from root folder of project
- * @param {String} path
- */
-resolvePath(...path);
-```
+const { resolvePath } = require('meen-utils');
 
-Example:
-```javascript
-resolvePath('public', 'image');
+module.exports = {
+    preset: null,
+    info: {
+        title: 'M.E.E.N',
+        version: '1.0.0',
+    },
+    mongoose: {
+        debug: false,
+        options: {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        },
+        itemPerPage: 20,
+    },
+    cors: '*',
+    session: {
+        secret: 'M.E.E.N',
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+    },
+    publicFolder: {
+        path: resolvePath('public'),
+        debug: false,
+    },
+    view: {
+        minify: false,
+        cache: false,
+    },
+    handleError: {
+        enabled: false,
+        debug: true,
+        isJson: false,
+    },
+};
 ```
 
 

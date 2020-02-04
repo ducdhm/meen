@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
-const getConfig = require('../utils/getConfig');
-const enhanceModel = require('../utils/enhanceModel');
 
-module.exports = (modelName, schema, options, dontEnhance) => {
-    const modelConfig = getConfig();
-
+module.exports = (modelName, schema, options) => {
     let modelSchema = new mongoose.Schema(schema, { timestamps: true });
 
     // Virtual
@@ -52,5 +48,5 @@ module.exports = (modelName, schema, options, dontEnhance) => {
         }
     }
 
-    return dontEnhance ? Model : enhanceModel(Model, modelConfig.mongoose.itemPerPage);
+    return Model;
 };
