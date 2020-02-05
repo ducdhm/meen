@@ -1,7 +1,7 @@
 const { errorHandlers } = require('meen-utils');
 
 module.exports = (app, config) => {
-    const log = app.logger('ERROR');
+    const logger = app.logger('ERROR');
 
     app.use((req, res, next) => {
         next(errorHandlers.error404());
@@ -11,7 +11,7 @@ module.exports = (app, config) => {
         error.code = error.code || 500;
 
         // add this line to include winston logging
-        log.error(`${error.code} - ${error.message} - ${req.originalUrl} - ${req.method} - ${req.ip} \n${error.stack}`);
+        logger.error(`${error.code} - ${error.message} - ${req.originalUrl} - ${req.method} - ${req.ip} \n${error.stack}`);
 
         let debugMode = false;
         if (req.query.hasOwnProperty('debug')) {

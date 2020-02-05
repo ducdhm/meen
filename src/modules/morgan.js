@@ -1,6 +1,7 @@
 // Morgan
 // --------------------------------
 const morgan = require('morgan');
+
 module.exports = (app) => {
     const httpLogger = app.logger('HTTP');
 

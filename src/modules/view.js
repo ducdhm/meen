@@ -3,6 +3,7 @@
 const { resolvePath } = require('meen-utils');
 const minifyHTML = require('express-minify-html-2');
 const { config: edgeConfig, engine } = require('express-edge');
+
 module.exports = (app, config) => {
     app.use(engine);
     app.set('views', resolvePath(app.id, 'views'));

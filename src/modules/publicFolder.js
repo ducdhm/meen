@@ -1,10 +1,9 @@
 // Static folder
 // --------------------------------
 const express = require('express');
-const path = require('path');
 
 module.exports = (app, config) => {
-    const log = app.logger('STATIC');
+    const logger = app.logger('STATIC');
 
     app.use(
         '/public',
@@ -14,7 +13,7 @@ module.exports = (app, config) => {
                 index: false,
                 setHeaders: (response, filePath) => {
                     // Logging work
-                    log.debug(`Serve "${response.req.originalUrl}" from "${filePath}"`);
+                    logger.debug(`Serve "${response.req.originalUrl}" from "${filePath}"`);
                 },
             } : null,
         ),

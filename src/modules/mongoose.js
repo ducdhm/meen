@@ -1,6 +1,7 @@
 // Connect to our database
 // --------------------------------
 const mongoose = require('mongoose');
+
 module.exports = (app, config) => {
     const logger = app.logger('MONGOOSE');
     mongoose.set('useCreateIndex', true);
@@ -13,5 +14,4 @@ module.exports = (app, config) => {
     });
 
     mongoose.connect(config.mongoose.url, config.mongoose.options);
-    mongoose.Promise = require('q').Promise;
 };

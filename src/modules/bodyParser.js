@@ -1,6 +1,7 @@
 // Body parser
 // --------------------------------
 const bodyParser = require('body-parser');
+
 module.exports = (app) => {
     // for parsing application/json
     app.use(bodyParser.json());
