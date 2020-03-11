@@ -12,7 +12,6 @@ module.exports = {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         },
-        itemPerPage: 20,
     },
     cors: '*',
     session: {
@@ -29,8 +28,22 @@ module.exports = {
         cache: false,
     },
     handleError: {
-        enabled: false,
+        enabled: true,
         debug: true,
         isJson: false,
+        locale: {
+            error404: 'Page Not Found',
+            error500: 'Server Internal Error',
+            title: 'Error {{ERROR_CODE}}',
+        },
+    },
+    bodyParser: {
+        json: {
+            limit: '5mb',
+        },
+        urlencoded: {
+            limit: '5mb',
+            extended: true,
+        },
     },
 };
