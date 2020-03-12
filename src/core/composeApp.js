@@ -42,6 +42,8 @@ module.exports = (appName, config, modules) => {
             break;
 
         case 'api':
+            appConfig.handleError.isJson = true;
+
             require('../modules/cors')(app, appConfig);
             require('../modules/bodyParser')(app, appConfig);
             require('../modules/mongoose')(app, appConfig);
