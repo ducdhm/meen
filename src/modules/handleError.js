@@ -38,7 +38,7 @@ module.exports = (app, config) => {
         if (config.handleError && config.handleError.isJson) {
             return errorHandlers.jsonError(error, res, debugMode);
         } else {
-            let title = config.handleError.title;
+            let title = config.handleError.locale.title;
             title = title.replace('{{ERROR_CODE}}', error.code);
 
             return res.render('error/error', {
