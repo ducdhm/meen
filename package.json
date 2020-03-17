@@ -1,14 +1,11 @@
 {
     "name": "meen-core",
-    "version": "1.5.9",
+    "version": "1.5.6",
     "description": "M.E.E.N = MongoDB + ExpressJS + EdgeJS + NodeJS",
     "main": "index.js",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ducdhm/meen-core.git"
-    },
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
     },
     "keywords": [
         "meen",
