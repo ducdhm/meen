@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
 
+const composeUrlVirtual = (modelName, modelSchema) => {
+    const url = modelName.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(x => x.toLowerCase()).join('-')
+
+    modelSchema.virtual('url').get(function () {
+        return `/${url}/${this._id}`;
+    });
+};
+
 module.exports = (modelName, schema, options) => {
     let modelSchema = new mongoose.Schema(schema, { timestamps: true });
 
@@ -19,12 +27,12 @@ module.exports = (modelName, schema, options) => {
                 typeof setter === 'function' && virtual.set(setter);
             }
         }
-    } else {
-        const url = modelName.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(x => x.toLowerCase()).join('-')
 
-        modelSchema.virtual('url').get(function () {
-            return `/${url}/${this._id}`;
-        });
+        if (!'url' in options.virtual) {
+            composeUrlVirtual(modelName, modelSchema);
+        }
+    } else {
+        composeUrlVirtual(modelName, modelSchema);
     }
 
     // Plugins
