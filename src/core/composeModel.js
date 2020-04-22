@@ -4,6 +4,7 @@ module.exports = (modelName, schema, options) => {
     let modelSchema = new mongoose.Schema(schema, { timestamps: true });
 
     // Virtual
+    // --------------------------------
     if (options && options.virtual) {
         for (let [key, value] of Object.entries(options.virtual)) {
             let virtual = modelSchema.virtual(key);
@@ -18,9 +19,16 @@ module.exports = (modelName, schema, options) => {
                 typeof setter === 'function' && virtual.set(setter);
             }
         }
+    } else {
+        const url = modelName.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(x => x.toLowerCase()).join('-')
+
+        modelSchema.virtual('url').get(function () {
+            return `/${url}/${this._id}`;
+        });
     }
 
     // Plugins
+    // --------------------------------
     if (options && Array.isArray(options.plugins)) {
         options.plugins.map((plugin) => {
             modelSchema.plugin(plugin);
@@ -28,11 +36,13 @@ module.exports = (modelName, schema, options) => {
     }
 
     // Index
+    // --------------------------------
     if (options && options.index) {
         modelSchema.index(options.index);
     }
 
     // Set
+    // --------------------------------
     if (options && options.set) {
         for (let [key, value] of Object.entries(options.set)) {
             modelSchema.set(key, value);
@@ -42,6 +52,7 @@ module.exports = (modelName, schema, options) => {
     const Model = mongoose.model(modelName, modelSchema);
 
     // Static
+    // --------------------------------
     if (options && options.static) {
         for (let [key, value] of Object.entries(options.static)) {
             Model[key] = value;
