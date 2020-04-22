@@ -28,7 +28,7 @@ module.exports = (modelName, schema, options) => {
             }
         }
 
-        if (!'url' in options.virtual) {
+        if (!('url' in options.virtual)) {
             composeUrlVirtual(modelName, modelSchema);
         }
     } else {
