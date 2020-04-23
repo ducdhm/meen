@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
-const { getLogger } = require('meen-utils');
+const { getLogger } = require('@meenjs/utils');
 const getConfig = require('../utils/getConfig');
 
 module.exports = (appName, config, modules) => {

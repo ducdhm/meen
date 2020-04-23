@@ -1,4 +1,4 @@
-const { resolvePath } = require('meen-utils');
+const { resolvePath } = require('@meenjs/utils');
 
 module.exports = {
     preset: null,

@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/ducdhm/meen-core#readme",
     "dependencies": {
+        "@meenjs/utils": "^1.2.6",
         "body-parser": "^1.19.0",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.4",
@@ -31,7 +32,6 @@
         "express-edge": "^2.0.1",
         "express-minify-html-2": "^1.0.1",
         "express-session": "^1.17.0",
-        "meen-utils": "^1.2.5",
         "mongoose": "^5.8.11",
         "morgan": "^1.9.1"
     },

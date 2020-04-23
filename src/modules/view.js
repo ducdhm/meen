@@ -1,6 +1,6 @@
 // View config
 // --------------------------------
-const { resolvePath } = require('meen-utils');
+const { resolvePath } = require('@meenjs/utils');
 const minifyHTML = require('express-minify-html-2');
 const { config: edgeConfig, engine } = require('express-edge');
 

@@ -1,5 +1,5 @@
 const deepExtend = require('deep-extend');
-const { resolvePath, getLogger } = require('meen-utils');
+const { resolvePath, getLogger } = require('@meenjs/utils');
 const defaultConfig = require('../core/defaultConfig');
 const logger = getLogger('utils/getConfig');
 

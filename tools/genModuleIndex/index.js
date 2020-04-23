@@ -1,4 +1,4 @@
-const { getFileList, resolvePath } = require('meen-utils');
+const { getFileList, resolvePath } = require('@meenjs/utils');
 const fs = require('fs');
 const path = require('path');
 const Handlebars = require('handlebars');
