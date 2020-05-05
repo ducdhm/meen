@@ -1,10 +1,10 @@
-const { errorHandlers } = require('@meenjs/utils');
+const { newError } = require('@meenjs/utils');
 
 module.exports = (app, config) => {
     const logger = app.logger('ERROR');
 
     app.use((req, res, next) => {
-        next(errorHandlers.newError(404));
+        next(newError(404));
     });
 
     app.use((error, req, res, next) => {
@@ -32,11 +32,24 @@ module.exports = (app, config) => {
                 break;
 
             default:
+                error.message = config.handleError.locale.error500;
                 // Do nothing
         }
 
-        if (config.handleError.isJson) {
-            return errorHandlers.jsonError(error, res, debugMode);
+        if (config.handleError.isJson || req.returnJson) {
+            let json = {
+                status: false,
+                code: error.code,
+                message: error.message,
+            };
+
+            if (debugMode) {
+                json.debug = {
+                    error: error,
+                };
+            }
+
+            return res.json(json);
         } else {
             let title = config.handleError.locale.title;
             title = title.replace('{{ERROR_CODE}}', error.code);
