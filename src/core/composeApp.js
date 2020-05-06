@@ -28,6 +28,17 @@ module.exports = (appName, config, modules) => {
         );
     };
 
+    app.postJson = (url, ...others) => {
+        app.post(
+            url,
+            (req, res, next) => {
+                req.returnJson = true;
+                next();
+            },
+            ...others,
+        )
+    };
+
     switch (appConfig.preset) {
         case 'website':
             require('../modules/compression')(app, appConfig);
