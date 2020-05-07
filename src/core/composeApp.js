@@ -12,6 +12,7 @@ module.exports = (appName, config, modules) => {
     const logger = getLogger('composeApp');
 
     const app = express();
+    app.enable('strict routing');
     app.id = appName;
     app.config = appConfig;
 
@@ -29,24 +30,19 @@ module.exports = (appName, config, modules) => {
     };
 
     app.getWithEndSlash = (url, ...others) => {
-        const isEndWithSlash = /\?[^]*\//.test(url);
+        const isEndSlash = /\?[^]*\//.test(url);
+        const urlWithoutEndSlash = isEndSlash ? url.slice(0, -1) : url;
+        const urlWithEndSlash = isEndSlash ? url : url + '/';
 
-        if (isEndWithSlash) {
-            app.get(
-                url,
-                ...others,
-            )
-        } else {
-            app.get(
-                url,
-                (req, res, next) => res.redirect(301, url + '/'),
-            )
+        app.get(
+            urlWithoutEndSlash,
+            (req, res, next) => res.redirect(301, urlWithEndSlash),
+        )
 
-            app.get(
-                url + '/',
-                ...others,
-            )
-        }
+        app.get(
+            urlWithEndSlash,
+            ...others,
+        )
     };
 
     app.postWithJsonResponse = (url, ...others) => {
