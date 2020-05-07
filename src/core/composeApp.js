@@ -28,7 +28,28 @@ module.exports = (appName, config, modules) => {
         );
     };
 
-    app.postJson = (url, ...others) => {
+    app.getWithEndSlash = (url, ...others) => {
+        const isEndWithSlash = /\?[^]*\//.test(url);
+
+        if (isEndWithSlash) {
+            app.get(
+                url,
+                ...others,
+            )
+        } else {
+            app.get(
+                url,
+                (req, res, next) => res.redirect(301, url + '/'),
+            )
+
+            app.get(
+                url + '/',
+                ...others,
+            )
+        }
+    };
+
+    app.postWithJsonResponse = (url, ...others) => {
         app.post(
             url,
             (req, res, next) => {
