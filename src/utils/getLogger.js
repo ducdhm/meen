@@ -1,35 +1,35 @@
 const { resolvePath } = require('@meenjs/utils');
 const { loggers, format, transports } = require('winston');
 const { combine, timestamp, printf, splat, label } = format;
-const colors = require('colors/safe');
+const chalk = require('chalk');
 const split = require('split');
 require('winston-daily-rotate-file');
 
 const myFormat = printf(info => {
-    let timestamp = colors.grey(info.timestamp);
+    let timestamp = chalk.grey(info.timestamp);
     let level = info.level.toUpperCase();
     switch (level.toString()) {
         case 'DEBUG':
-            level = colors.cyan(level);
+            level = chalk.blue(level);
             break;
 
         case 'INFO':
-            level = colors.blue(level);
+            level = chalk.cyan(level);
             break;
 
         case 'WARN':
-            level = colors.yellow(level);
+            level = chalk.yellow(level);
             break;
 
         case 'ERROR':
-            level = colors.red(level);
+            level = chalk.red(level);
             break;
 
         default:
         // Do nothing
     }
 
-    let label = colors.yellow(info.label);
+    let label = chalk.magenta(info.label);
     let message = info.message;
 
     return `[${timestamp}]  [${level}]  [${label}]  ${message}`;
