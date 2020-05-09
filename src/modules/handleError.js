@@ -32,8 +32,7 @@ module.exports = (app, config) => {
                 break;
 
             default:
-                error.message = config.handleError.locale.error500;
-                // Do nothing
+                error.message = error.message || config.handleError.locale.error500;
         }
 
         if (config.handleError.isJson || req.returnJson) {
