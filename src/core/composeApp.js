@@ -1,15 +1,23 @@
 const express = require('express');
-const getConfig = require('../utils/getConfig');
-const getLogger = require('../utils/getLogger');
+const deepExtend = require('deep-extend');
+const { resolvePath, getWinstonLogger } = require('@meenjs/utils');
+const defaultConfig = require('../defaults/config');
 
 module.exports = (appName, config, modules) => {
+    const logger = getWinstonLogger('composeApp');
+
     if (typeof modules === 'undefined') {
         modules = config;
         config = {};
     }
 
-    const appConfig = getConfig(config);
-    const logger = getLogger('composeApp');
+    let fileConfig;
+    try {
+        fileConfig = require(resolvePath('@local', 'config', 'app.js'));
+    } catch (e) {
+        logger.warn(`"/@local/config/app.js" file does not exist\nError:%o`, e);
+    }
+    const appConfig = deepExtend(defaultConfig, fileConfig, config);
 
     const app = express();
     app.enable('strict routing');
@@ -17,7 +25,7 @@ module.exports = (appName, config, modules) => {
     app.config = appConfig;
 
     app.logger = (category) => {
-        return getLogger(category, appName);
+        return getWinstonLogger(category, appName);
     };
 
     app.run = () => {
