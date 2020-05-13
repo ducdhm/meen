@@ -1,16 +1,24 @@
 const express = require('express');
 const deepExtend = require('deep-extend');
 const { resolvePath, getWinstonLogger } = require('@meenjs/utils');
-const defaultConfig = require('../defaults/config');
+const defaultConfig = require('../config');
+const buildMenu = require('./buildMenu');
+const initResolver = require('./initResolver');
+const getWithEndSlash = require('./getWithEndSlash');
+const postWithJsonResponse = require('./postWithJsonResponse');
 
 module.exports = (appName, config, modules) => {
     const logger = getWinstonLogger('composeApp');
 
+    // Overloading options
+    // --------------------------------
     if (typeof modules === 'undefined') {
         modules = config;
         config = {};
     }
 
+    // Config
+    // --------------------------------
     let fileConfig;
     try {
         fileConfig = require(resolvePath('@local', 'config', 'app.js'));
@@ -24,10 +32,14 @@ module.exports = (appName, config, modules) => {
     app.id = appName;
     app.config = appConfig;
 
+    // Get logger with app name
+    // --------------------------------
     app.logger = (category) => {
         return getWinstonLogger(category, appName);
     };
 
+    // Alias of "listen" method
+    // --------------------------------
     app.run = () => {
         let appPort = appConfig.port[appName];
 
@@ -37,33 +49,24 @@ module.exports = (appName, config, modules) => {
         );
     };
 
-    app.getWithEndSlash = (url, ...others) => {
-        const isEndSlash = /\?[^]*\//.test(url);
-        const urlWithoutEndSlash = isEndSlash ? url.slice(0, -1) : url;
-        const urlWithEndSlash = isEndSlash ? url : url + '/';
+    // Build menu
+    // --------------------------------
+    app.buildMenu = buildMenu;
 
-        app.get(
-            urlWithoutEndSlash,
-            (req, res, next) => res.redirect(301, urlWithEndSlash),
-        )
+    // Init resolver
+    // --------------------------------
+    app.initResolver = initResolver;
 
-        app.get(
-            urlWithEndSlash,
-            ...others,
-        )
-    };
+    // GET request with automatic redirect to end-slash URL
+    // --------------------------------
+    app.getWithEndSlash = getWithEndSlash;
 
-    app.postWithJsonResponse = (url, ...others) => {
-        app.post(
-            url,
-            (req, res, next) => {
-                req.returnJson = true;
-                next();
-            },
-            ...others,
-        )
-    };
+    // POST request with json response
+    // --------------------------------
+    app.postWithJsonResponse = postWithJsonResponse;
 
+    // Preset
+    // --------------------------------
     switch (appConfig.preset) {
         case 'website':
             require('../modules/compression')(app, appConfig);
@@ -88,12 +91,16 @@ module.exports = (appName, config, modules) => {
         // Do nothing
     }
 
+    // Load module
+    // --------------------------------
     modules.forEach(module => {
         if (typeof module === 'function') {
             module.call(null, app, appConfig);
         }
     });
 
+    // "handleError" module
+    // --------------------------------
     if (appConfig.handleError.enabled) {
         require('../modules/handleError')(app, appConfig);
     }
