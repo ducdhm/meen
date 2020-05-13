@@ -1,4 +1,4 @@
-module.exports = (url, ...others) => {
+module.exports = (app, url, ...others) => {
     app.post(
         url,
         (req, res, next) => {

@@ -1,4 +1,4 @@
-module.exports = (url, ...others) => {
+module.exports = (app, url, ...others) => {
     const isEndSlash = /\?[^]*\//.test(url);
     const urlWithoutEndSlash = isEndSlash ? url.slice(0, -1) : url;
     const urlWithEndSlash = isEndSlash ? url : url + '/';

@@ -59,11 +59,11 @@ module.exports = (appName, config, modules) => {
 
     // GET request with automatic redirect to end-slash URL
     // --------------------------------
-    app.getWithEndSlash = getWithEndSlash;
+    app.getWithEndSlash = (...params) => getWithEndSlash(app, ...params);
 
     // POST request with json response
     // --------------------------------
-    app.postWithJsonResponse = postWithJsonResponse;
+    app.postWithJsonResponse  = (...params) => postWithJsonResponse(app, ...params);
 
     // Preset
     // --------------------------------

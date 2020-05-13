@@ -63,7 +63,7 @@ module.exports = (modelName, schema, options) => {
 
     // "getDataByPage" method
     // --------------------------------
-    Model.getDataByPage = async (req, itemPerPage, query, improveQueryBuild) => await getDataByPage(Model, req, itemPerPage, query, improveQueryBuild);
+    Model.getDataByPage = async (...params) => await getDataByPage(Model, ...params);
 
     return Model;
 };
