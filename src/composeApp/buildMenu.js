@@ -6,7 +6,7 @@ module.exports = (menuConfig, req) => {
         if (item.parent) {
             item.active = isActive(item, req);
 
-            subMenu[item.parent] = subMenu[item.parent] || {active: false, items: []};
+            subMenu[item.parent] = subMenu[item.parent] || { active: false, items: [] };
             subMenu[item.parent].items.push(item);
 
             if (!subMenu[item.parent].active && item.active) {
