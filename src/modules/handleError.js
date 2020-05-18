@@ -10,17 +10,6 @@ module.exports = (app, config) => {
     app.use((error, req, res, next) => {
         error.code = error.code || 500;
 
-        // Add this line to include winston logging
-        logger.error(`${error.code} - ${error.message} - ${req.originalUrl} - ${req.method} - ${req.ip} \n${error.stack}`);
-
-        let debugMode = false;
-        if (req.query.hasOwnProperty('debug')) {
-            debugMode = true;
-        }
-        if (config.handleError.debug) {
-            debugMode = true;
-        }
-
         // Normalize message for common error code
         switch (error.code) {
             case 404:
@@ -33,6 +22,17 @@ module.exports = (app, config) => {
 
             default:
                 error.message = error.message || config.handleError.locale.error500;
+        }
+
+        // Add this line to include winston logging
+        logger.error(`${error.code} - ${error.message} - ${req.originalUrl} - ${req.method} - ${req.ip} \n${error.stack}`);
+
+        let debugMode = false;
+        if (req.query.hasOwnProperty('debug')) {
+            debugMode = true;
+        }
+        if (config.handleError.debug) {
+            debugMode = true;
         }
 
         if (config.handleError.isJson || req.returnJson) {
