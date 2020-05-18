@@ -4,6 +4,7 @@ const { resolvePath, getWinstonLogger } = require('@meenjs/utils');
 const defaultConfig = require('../config');
 const buildMenu = require('./buildMenu');
 const initResolver = require('./initResolver');
+const initUploader = require('./initUploader');
 const getWithEndSlash = require('./getWithEndSlash');
 const postWithJsonResponse = require('./postWithJsonResponse');
 
@@ -57,13 +58,17 @@ module.exports = (appName, config, modules) => {
     // --------------------------------
     app.initResolver = initResolver;
 
+    // Init uploader
+    // --------------------------------
+    app.initUploader = initUploader;
+
     // GET request with automatic redirect to end-slash URL
     // --------------------------------
     app.getWithEndSlash = (...params) => getWithEndSlash(app, ...params);
 
     // POST request with json response
     // --------------------------------
-    app.postWithJsonResponse  = (...params) => postWithJsonResponse(app, ...params);
+    app.postWithJsonResponse = (...params) => postWithJsonResponse(app, ...params);
 
     // Preset
     // --------------------------------
