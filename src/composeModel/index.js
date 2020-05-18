@@ -33,7 +33,7 @@ module.exports = (modelName, schema, options) => {
     // --------------------------------
     if (options && Array.isArray(options.plugins)) {
         options.plugins.map((plugin) => {
-            modelSchema.plugin(plugin);
+            Array.isArray(plugin) ? modelSchema.plugin(...plugin) : modelSchema.plugin(plugin);
         });
     }
 
