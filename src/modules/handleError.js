@@ -40,13 +40,8 @@ module.exports = (app, config) => {
                 status: false,
                 code: error.code,
                 message: error.message,
+                error: error,
             };
-
-            if (debugMode) {
-                json.debug = {
-                    error: error,
-                };
-            }
 
             return res.json(json);
         } else {

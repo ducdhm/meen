@@ -29,10 +29,10 @@ module.exports = (modelName, schema, options) => {
         composeUrlVirtual(modelName, modelSchema);
     }
 
-    // Plugins
+    // Plugin
     // --------------------------------
-    if (options && Array.isArray(options.plugins)) {
-        options.plugins.map((plugin) => {
+    if (options && Array.isArray(options.plugin)) {
+        options.plugin.map((plugin) => {
             Array.isArray(plugin) ? modelSchema.plugin(...plugin) : modelSchema.plugin(plugin);
         });
     }
