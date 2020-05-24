@@ -11,17 +11,18 @@ module.exports = (app, config) => {
         error.code = error.code || 500;
 
         // Normalize message for common error code
+        let message = error.message;
         switch (error.code) {
             case 404:
-                error.message = config.handleError.locale.error404;
+                message = message || config.handleError.locale.error404;
                 break;
 
             case 500:
-                error.message = config.handleError.locale.error500;
+                message = message || config.handleError.locale.error500;
                 break;
 
             default:
-                error.message = error.message || config.handleError.locale.error500;
+                message = message || config.handleError.locale.error500;
         }
 
         // Add this line to include winston logging
@@ -35,12 +36,21 @@ module.exports = (app, config) => {
             debugMode = true;
         }
 
+        // Add stack error when debugging
+        const stackError = {};
+        if (debugMode) {
+            stackError.stack = error.stack.split('\n');
+        }
+
         if (config.handleError.isJson || req.returnJson) {
             let json = {
                 status: false,
                 code: error.code,
-                message: error.message,
-                error: error,
+                message: message,
+                error: {
+                    ...error,
+                    ...stackError,
+                },
             };
 
             return res.json(json);
