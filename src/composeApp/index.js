@@ -6,9 +6,6 @@ const buildMenu = require('./buildMenu');
 const initResolver = require('./initResolver');
 const initUploader = require('./initUploader');
 const redirectTo = require('./redirectTo');
-const returnJsonResponse = require('./returnJsonResponse');
-const getWithEndSlash = require('./getWithEndSlash');
-const postWithJsonResponse = require('./postWithJsonResponse');
 
 module.exports = (appName, config, modules) => {
     const logger = getWinstonLogger('composeApp');
@@ -67,18 +64,6 @@ module.exports = (appName, config, modules) => {
     // Redirect with query string
     // --------------------------------
     app.redirectTo = redirectTo;
-
-    // Return json response
-    // --------------------------------
-    app.returnJsonResponse = returnJsonResponse;
-
-    // GET request with automatic redirect to end-slash URL
-    // --------------------------------
-    app.getWithEndSlash = (...params) => getWithEndSlash(app, ...params);
-
-    // POST request with json response
-    // --------------------------------
-    app.postWithJsonResponse = (...params) => postWithJsonResponse(app, ...params);
 
     // Preset
     // --------------------------------

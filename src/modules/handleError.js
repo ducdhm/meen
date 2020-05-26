@@ -42,7 +42,7 @@ module.exports = (app, config) => {
             stackError.stack = error.stack.split('\n');
         }
 
-        if (config.handleError.isJson || req.returnJson) {
+        if (config.handleError.isJson || req.xhr) {
             let json = {
                 status: false,
                 code: error.code,
