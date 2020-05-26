@@ -5,6 +5,8 @@ const defaultConfig = require('../config');
 const buildMenu = require('./buildMenu');
 const initResolver = require('./initResolver');
 const initUploader = require('./initUploader');
+const redirectTo = require('./redirectTo');
+const returnJsonResponse = require('./returnJsonResponse');
 const getWithEndSlash = require('./getWithEndSlash');
 const postWithJsonResponse = require('./postWithJsonResponse');
 
@@ -61,6 +63,14 @@ module.exports = (appName, config, modules) => {
     // Init uploader
     // --------------------------------
     app.initUploader = initUploader;
+
+    // Redirect with query string
+    // --------------------------------
+    app.redirectTo = redirectTo;
+
+    // Return json response
+    // --------------------------------
+    app.returnJsonResponse = returnJsonResponse;
 
     // GET request with automatic redirect to end-slash URL
     // --------------------------------
