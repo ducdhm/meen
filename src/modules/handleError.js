@@ -10,6 +10,21 @@ module.exports = (app, config) => {
     app.use((error, req, res, next) => {
         error.code = error.code || 500;
 
+        // Normalize message for common error code
+        let message = error.message;
+        switch (error.code) {
+            case 404:
+                message = message || config.handleError.locale.error404;
+                break;
+
+            case 500:
+                message = message || config.handleError.locale.error500;
+                break;
+
+            default:
+                message = message || config.handleError.locale.error500;
+        }
+
         // Add this line to include winston logging
         logger.error(`${error.code} - ${error.message} - ${req.originalUrl} - ${req.method} - ${req.ip} \n${error.stack}`);
 
@@ -21,32 +36,22 @@ module.exports = (app, config) => {
             debugMode = true;
         }
 
-        // Normalize message for common error code
-        switch (error.code) {
-            case 404:
-                error.message = config.handleError.locale.error404;
-                break;
-
-            case 500:
-                error.message = config.handleError.locale.error500;
-                break;
-
-            default:
-                error.message = error.message || config.handleError.locale.error500;
+        // Add stack error when debugging
+        const stackError = {};
+        if (debugMode) {
+            stackError.stack = error.stack.split('\n');
         }
 
         if (config.handleError.isJson || req.returnJson) {
             let json = {
                 status: false,
                 code: error.code,
-                message: error.message,
+                message: message,
+                error: {
+                    ...error,
+                    ...stackError,
+                },
             };
-
-            if (debugMode) {
-                json.debug = {
-                    error: error,
-                };
-            }
 
             return res.json(json);
         } else {
