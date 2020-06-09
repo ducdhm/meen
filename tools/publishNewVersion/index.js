@@ -1,4 +1,4 @@
-const { publishNewVersion } = require('@meenjs/utils');
+const publishNewVersion = require('publish-new-version');
 const { execSync } = require('child_process');
 
 publishNewVersion(async (logger) => {

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const deepExtend = require('deep-extend');
-const defaultConfig = require('../config');
+const defaultConfig = require('./defaultConfig');
 const { resolvePath, getFileList } = require('@meenjs/utils');
 
 module.exports = (appName, config, logger) => {

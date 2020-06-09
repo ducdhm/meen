@@ -15,7 +15,7 @@ composeApp(appName, config, modules);
 ```
 
 **Note**: Order of configuration as the following:
-  1. [Default](./src/core/defaultConfig.js)
+  1. [Default](./src/composeApp/defaultConfig.js)
   1. `/config/app.js` (will be loaded if available)
   1. `config` param 
   
@@ -87,39 +87,52 @@ MEEN provides presets for app types via `config.app.preset`. Order of modules wi
 const { resolvePath } = require('meen-utils');
 
 module.exports = {
-    preset: null,
-    info: {
-        title: 'M.E.E.N',
-        version: '1.0.0',
-    },
-    mongoose: {
-        debug: false,
-        options: {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        },
-        itemPerPage: 20,
-    },
-    cors: '*',
-    session: {
-        secret: 'M.E.E.N',
-        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-    },
-    publicFolder: {
-        path: resolvePath('public'),
-        debug: false,
-    },
-    view: {
-        minify: false,
-        cache: false,
-    },
-    handleError: {
-        enabled: false,
-        debug: true,
-        isJson: false,
-    },
-};
+     preset: null,
+     info: {
+         title: 'M.E.E.N',
+         version: '1.0.0',
+     },
+     mongoose: {
+         debug: false,
+         options: {
+             useNewUrlParser: true,
+             useUnifiedTopology: true,
+         },
+     },
+     cors: '*',
+     session: {
+         secret: 'M.E.E.N',
+         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+         maxAge: 7 * 24 * 60 * 60 * 1000,
+     },
+     publicFolder: {
+         path: resolvePath('public'),
+         debug: false,
+     },
+     view: {
+         minify: false,
+         cache: false,
+     },
+     handleError: {
+         enabled: true,
+         debug: true,
+         isJson: false,
+         locale: {
+             error404: 'Page Not Found',
+             error500: 'Server Internal Error',
+             title: 'Error {{ERROR_CODE}}',
+         },
+     },
+     bodyParser: {
+         json: {
+             limit: '5mb',
+         },
+         urlencoded: {
+             limit: '5mb',
+             extended: true,
+         },
+     },
+ };
 ```
 
 
