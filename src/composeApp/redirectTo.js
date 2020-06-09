@@ -1,4 +1,4 @@
-module.exports = (url, ignoreQueryList) => (req, res, next) => {
+module.exports = (url, ignoreQueryList = []) => (req, res, next) => {
     let queryString = '';
     for (let name in req.query) {
         if (!ignoreQueryList.includes(name) && req.query.hasOwnProperty(name)) {
