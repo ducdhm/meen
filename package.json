@@ -21,7 +21,7 @@
     },
     "homepage": "https://github.com/ducdhm/meen-core#readme",
     "dependencies": {
-        "@meenjs/utils": "^1.3.7",
+        "@meenjs/utils": "^1.3.9",
         "body-parser": "^1.19.0",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.5",

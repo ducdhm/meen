@@ -29,17 +29,14 @@ module.exports = (app, config) => {
         logger.error(`${error.code} - ${error.message} - ${req.originalUrl} - ${req.method} - ${req.ip} \n${error.stack}`);
 
         let debugMode = false;
-        if (req.query.hasOwnProperty('debug')) {
-            debugMode = true;
-        }
+        const stackError = {};
         if (config.handleError.debug) {
             debugMode = true;
-        }
-
-        // Add stack error when debugging
-        const stackError = {};
-        if (debugMode) {
+            // Add stack error when debug ON
             stackError.stack = error.stack.split('\n');
+        } else {
+            // Remove stack error when debug OFF
+            delete error.stack;
         }
 
         if (config.handleError.isJson || req.xhr) {
@@ -53,14 +50,19 @@ module.exports = (app, config) => {
                 },
             };
 
-            return res.json(json);
+            if (req.headers['content-type'].indexOf('multipart/form-data;') !== -1) {
+                // Support Dropzone
+                return res.status(error.code).json(message);
+            } else {
+                return res.json(json);
+            }
         } else {
             let title = config.handleError.locale.title;
             title = title.replace('{{ERROR_CODE}}', error.code);
 
             return res.render('error/error', {
                 error,
-                debugMode: debugMode,
+                debugMode,
                 title,
                 bodyClass: 'page-error',
                 app: config.app,
