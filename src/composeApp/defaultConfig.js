@@ -29,7 +29,7 @@ module.exports = {
     },
     handleError: {
         enabled: true,
-        debug: true,
+        debug: false,
         isJson: false,
         locale: {
             error404: 'Page Not Found',
