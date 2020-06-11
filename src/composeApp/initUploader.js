@@ -6,8 +6,6 @@ const isValidFile = function (file, acceptedFiles) {
         return true;
     }
 
-    acceptedFiles = acceptedFiles.split(',');
-
     let mimeType = file.mimetype;
     let baseMimeType = mimeType.replace(/\/.*$/, '');
 
