@@ -48,7 +48,7 @@ module.exports = {
     },
     bruteForce: {
         errorCode: 429,
-        errorMessage: 'Too Many Request',
+        errorMessage: 'Too Many Requests',
         collectionName: 'BRUTE_FORCE',
         maxRequest: 60,
         limitTime: 60 * 1000,
