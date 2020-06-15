@@ -1,5 +1,6 @@
 module.exports = {
     bodyParser: require('./bodyParser'),
+    bruteForce: require('./bruteForce'),
     compression: require('./compression'),
     cors: require('./cors'),
     handleError: require('./handleError'),
