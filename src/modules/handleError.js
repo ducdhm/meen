@@ -14,15 +14,15 @@ module.exports = (app, config) => {
         let message = error.message;
         switch (error.code) {
             case 404:
-                message = message || config.handleError.locale.error404;
+                error.message = error.message || config.handleError.locale.error404;
                 break;
 
             case 500:
-                message = message || config.handleError.locale.error500;
+                error.message = error.message || config.handleError.locale.error500;
                 break;
 
             default:
-                message = message || config.handleError.locale.error500;
+                error.message = error.message || config.handleError.locale.error500;
         }
 
         // Add this line to include winston logging
@@ -40,21 +40,19 @@ module.exports = (app, config) => {
         }
 
         if (config.handleError.isJson || req.xhr) {
-            let json = {
-                status: false,
-                code: error.code,
-                message: message,
-                error: {
-                    ...error,
-                    ...stackError,
-                },
-            };
-
             if (req.headers['content-type'].indexOf('multipart/form-data;') !== -1) {
                 // Support Dropzone
-                return res.status(error.code).json(message);
+                return res.status(error.code).json(error.message);
             } else {
-                return res.json(json);
+                return res.json({
+                    status: false,
+                    code: error.code,
+                    message: error.message,
+                    error: {
+                        ...error,
+                        ...stackError,
+                    },
+                });
             }
         } else {
             let title = config.handleError.locale.title;
