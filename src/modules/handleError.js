@@ -40,7 +40,7 @@ module.exports = (app, config) => {
         }
 
         if (config.handleError.isJson || req.xhr) {
-            if (req.headers['content-type'].indexOf('multipart/form-data;') !== -1) {
+            if ((req.headers['content-type'] || '').indexOf('multipart/form-data;') !== -1) {
                 // Support Dropzone
                 return res.status(error.code).json(error.message);
             } else {
