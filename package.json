@@ -1,6 +1,6 @@
 {
     "name": "@meenjs/core",
-    "version": "1.9.2",
+    "version": "1.9.3",
     "description": "M.E.E.N = MongoDB + ExpressJS + EdgeJS + NodeJS",
     "main": "index.js",
     "repository": {
