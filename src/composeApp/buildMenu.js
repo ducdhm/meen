@@ -1,4 +1,4 @@
-const isActive = (menuItem, req) => req.url === menuItem.href;
+const isActive = (menuItem, req) => req.url.indexOf(menuItem.href) === 0;
 
 module.exports = (menuConfig, req) => {
     let subMenu = {};
