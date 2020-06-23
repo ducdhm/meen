@@ -31,13 +31,33 @@ const isValidFile = function (file, acceptedFiles) {
 };
 
 
-module.exports = (uploadPath, acceptedFiles = [], acceptedFileErrorMessage, fileSize) => {
+module.exports = (options) => {
+    let acceptedFiles = options.acceptedFiles;
+    let acceptedFileErrorMessage = options.acceptedFileErrorMessage;
+    let fileSize = options.fileSize;
+    let fileName = options.fileName;
+
     const storage = multer.diskStorage({
         destination: (req, file, next) => {
+            let uploadPath = options.uploadPath;
+            if (typeof options.uploadPath === 'function') {
+                uploadPath = options.uploadPath(req, file);
+            }
+
             next(null, uploadPath);
         },
         filename: (req, file, next) => {
-            next(null, getUploadFileName(file.originalname));
+            let fileName = getUploadFileName(file.originalname);
+
+            if (options.fileName) {
+                fileName = options.fileName;
+
+                if (typeof options.fileName === 'function') {
+                    fileName = options.fileName(req, file);
+                }
+            }
+
+            next(null, fileName);
         },
     });
 
