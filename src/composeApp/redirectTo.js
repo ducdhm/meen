@@ -1,10 +1,11 @@
 module.exports = (url, ignoreQueryList = []) => (req, res, next) => {
-    let queryString = '';
+    let queryPair = [];
     for (let name in req.query) {
         if (!ignoreQueryList.includes(name) && req.query.hasOwnProperty(name)) {
-            queryString += `${name}=${req.query[name]}`;
+            queryPair.push(`${name}=${req.query[name]}`);
         }
     }
+    let queryString = queryPair.join('&');
 
     res.redirect(301, `${url}${queryString ? '?' + queryString : ''}`);
 };
