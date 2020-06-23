@@ -1,6 +1,13 @@
 const { resolvePath } = require('@meenjs/utils');
+const en = require('./locale/en');
+const vi = require('./locale/vi');
 
 module.exports = {
+    lang: 'en',
+    locales: {
+        en,
+        vi,
+    },
     preset: null,
     info: {
         title: 'M.E.E.N',

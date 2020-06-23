@@ -2,6 +2,7 @@ const { newError } = require('@meenjs/utils');
 
 module.exports = (app, config) => {
     const logger = app.logger('ERROR');
+    const { LOCALE } = app;
 
     app.use((req, res, next) => {
         next(newError(404));
@@ -14,15 +15,15 @@ module.exports = (app, config) => {
         let message = error.message;
         switch (error.code) {
             case 404:
-                error.message = error.message || config.handleError.locale.error404;
+                error.message = error.message || LOCALE.PAGE_ERROR__ERROR_404;
                 break;
 
             case 500:
-                error.message = error.message || config.handleError.locale.error500;
+                error.message = error.message || LOCALE.PAGE_ERROR__ERROR_500;
                 break;
 
             default:
-                error.message = error.message || config.handleError.locale.error500;
+                error.message = error.message || LOCALE.PAGE_ERROR__ERROR_500;
         }
 
         // Add this line to include winston logging
@@ -55,7 +56,7 @@ module.exports = (app, config) => {
                 });
             }
         } else {
-            let title = config.handleError.locale.title;
+            let title = LOCALE.PAGE_ERROR__TITLE;
             title = title.replace('{{ERROR_CODE}}', error.code);
 
             return res.render('error/error', {

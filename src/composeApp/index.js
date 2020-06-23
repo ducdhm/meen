@@ -5,6 +5,8 @@ const initResolver = require('./initResolver');
 const initUploader = require('./initUploader');
 const redirectTo = require('./redirectTo');
 const getConfig = require('./getConfig');
+const en = require('./locale/en');
+const vi = require('./locale/vi');
 
 module.exports = (appName, config, modules) => {
     const logger = getWinstonLogger('composeApp');
@@ -23,6 +25,7 @@ module.exports = (appName, config, modules) => {
     app.enable('strict routing');
     app.id = appName;
     app.config = appConfig;
+    app.LOCALE = appConfig.locales[appConfig.lang];
 
     // Get logger with app name
     // --------------------------------
