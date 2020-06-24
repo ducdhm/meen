@@ -81,6 +81,14 @@ module.exports = {
     ],
 
 
+    // initUploader.js
+    // --------------------------------------
+    UPLOADER__SIZE_ERROR_MESSAGE: [
+        'File size exceeds allowable limit ({{MAX_FILE_SIZE}}MB)',
+        'File vượt quá dung lương cho phép ({{MAX_FILE_SIZE}}MB)',
+    ],
+
+
     // Page login
     // --------------------------------------
     PAGE_LOGIN__BTN: [

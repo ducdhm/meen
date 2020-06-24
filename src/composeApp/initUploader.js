@@ -31,11 +31,12 @@ const isValidFile = function (file, acceptedFiles) {
 };
 
 
-module.exports = (options) => {
+module.exports = (app, options) => {
+    let { LOCALE } = app;
     let acceptedFiles = options.acceptedFiles;
     let acceptedFileErrorMessage = options.acceptedFileErrorMessage;
     let fileSize = options.fileSize;
-    let fileName = options.fileName;
+    let fileSizeErrorMessage = LOCALE.UPLOADER__SIZE_ERROR_MESSAGE.replace('{{MAX_FILE_SIZE}}', fileSize / 1024 / 1024);
 
     const storage = multer.diskStorage({
         destination: (req, file, next) => {
@@ -61,7 +62,7 @@ module.exports = (options) => {
         },
     });
 
-    return multer({
+    const uploader = multer({
         storage,
         fileFilter: function (req, file, next) {
             if (isValidFile(file, acceptedFiles)) {
@@ -74,4 +75,58 @@ module.exports = (options) => {
             fileSize,
         },
     });
+
+    const handleError = (error, next) => {
+        error.message = error.code === 'LIMIT_FILE_SIZE' ? fileSizeErrorMessage : error.message;
+        error.code = isNaN(error.code) ? 422 : error.code;
+        return next(error);
+    };
+
+    return {
+        single: (name) => (req, res, next) => {
+            uploader.single(name)(req, res, function (error) {
+                if (error) {
+                    return handleError(error, next);
+                }
+
+                return next();
+            });
+        },
+        array: (fieldName, maxCount) => (req, res, next) => {
+            uploader.array(fieldName, maxCount)(req, res, function (error) {
+                if (error) {
+                    return handleError(error, next);
+                }
+
+                return next();
+            });
+        },
+        fields: (fields) => (req, res, next) => {
+            uploader.fields(fields)(req, res, function (error) {
+                if (error) {
+                    return handleError(error, next);
+                }
+
+                return next();
+            });
+        },
+        none: () => (req, res, next) => {
+            uploader.none()(req, res, function (error) {
+                if (error) {
+                    return handleError(error, next);
+                }
+
+                return next();
+            });
+        },
+        any: () => (req, res, next) => {
+            uploader.any()(req, res, function (error) {
+                if (error) {
+                    return handleError(error, next);
+                }
+
+                return next();
+            });
+        },
+    };
 };
