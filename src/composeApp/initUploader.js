@@ -1,4 +1,5 @@
 const multer = require('multer');
+const mime = require('mime-types')
 const { getUploadFileName, newError } = require('@meenjs/utils');
 
 const isValidFile = function (file, acceptedFiles) {
@@ -8,6 +9,11 @@ const isValidFile = function (file, acceptedFiles) {
 
     let mimeType = file.mimetype;
     let baseMimeType = mimeType.replace(/\/.*$/, '');
+
+    // Verify fileName extension with mimetype
+    if (mime.lookup(file.originalname) !== mimeType) {
+        return false;
+    }
 
     for (let validType of acceptedFiles) {
         validType = validType.trim();
