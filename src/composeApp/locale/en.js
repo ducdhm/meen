@@ -15,6 +15,7 @@ module.exports = {
     PAGE_ERROR__ERROR_404: "Page Not Found",
     PAGE_ERROR__ERROR_500: "Internal Server Error",
     PAGE_ERROR__ERROR_429: "Too Many Requests",
+    UPLOADER__SIZE_ERROR_MESSAGE: "File size exceeds allowable limit ({{MAX_FILE_SIZE}}MB)",
     PAGE_LOGIN__BTN: "Login",
     PAGE_LOGIN__USERNAME: "Username",
     PAGE_LOGIN__PASSWORD: "Password",

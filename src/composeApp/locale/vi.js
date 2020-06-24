@@ -15,6 +15,7 @@ module.exports = {
     PAGE_ERROR__ERROR_404: "Không Tìm Thấy Trang",
     PAGE_ERROR__ERROR_500: "Lỗi Hệ Thống",
     PAGE_ERROR__ERROR_429: "Quá Nhiều Yêu Cầu Tới Hệ Thống",
+    UPLOADER__SIZE_ERROR_MESSAGE: "File vượt quá dung lương cho phép ({{MAX_FILE_SIZE}}MB)",
     PAGE_LOGIN__BTN: "Đăng nhập",
     PAGE_LOGIN__USERNAME: "Tên đăng nhập",
     PAGE_LOGIN__PASSWORD: "Mật khẩu",
