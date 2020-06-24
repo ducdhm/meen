@@ -38,11 +38,6 @@ module.exports = {
         enabled: true,
         debug: false,
         isJson: false,
-        locale: {
-            error404: 'Page Not Found',
-            error500: 'Server Internal Error',
-            title: 'Error {{ERROR_CODE}}',
-        },
     },
     bodyParser: {
         json: {
@@ -54,8 +49,6 @@ module.exports = {
         },
     },
     bruteForce: {
-        errorCode: 429,
-        errorMessage: 'Too Many Requests',
         collectionName: 'BRUTE_FORCE',
         maxRequest: 60,
         limitTime: 60 * 1000,

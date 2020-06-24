@@ -3,7 +3,7 @@ const MongoStore = require('rate-limit-mongo');
 const { newError } = require('@meenjs/utils');
 
 module.exports = (app) => {
-    const { config } = app;
+    const { config, LOCALE } = app;
 
     const limiter = new RateLimit({
         store: new MongoStore({
@@ -13,7 +13,7 @@ module.exports = (app) => {
         }),
         max: config.bruteForce.maxRequest,
         windowMs: config.bruteForce.limitTime,
-        handler: (req, res, next) => next(newError(config.bruteForce.errorCode, config.bruteForce.errorMessage)),
+        handler: (req, res, next) => next(newError(429, LOCALE.PAGE_ERROR__ERROR_429)),
     });
 
     app.use(limiter);
