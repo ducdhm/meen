@@ -54,7 +54,7 @@ module.exports = (appName, config, modules) => {
 
     // Init uploader
     // --------------------------------
-    app.initUploader = initUploader;
+    app.initUploader = (...args) => initUploader(app, ...args);
 
     // Redirect with query string
     // --------------------------------
