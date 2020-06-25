@@ -11,8 +11,11 @@ const isValidFile = function (file, acceptedFiles) {
     let baseMimeType = mimeType.replace(/\/.*$/, '');
 
     // Verify fileName extension with mimetype
-    if (mime.lookup(file.originalname) !== mimeType) {
-        return false;
+    let realMimeType = mime.lookup(file.originalname);
+    if (realMimeType) {
+        if (realMimeType !== mimeType) {
+            return false;
+        }
     }
 
     for (let validType of acceptedFiles) {
@@ -54,6 +57,10 @@ module.exports = (app, options) => {
             next(null, uploadPath);
         },
         filename: (req, file, next) => {
+            if (!mime.lookup(file.originalname)) {
+                file.originalname += '.' + mime.extension(file.mimetype);
+            }
+
             let fileName = getUploadFileName(file.originalname);
 
             if (options.fileName) {
