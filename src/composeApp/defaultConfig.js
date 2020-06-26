@@ -36,7 +36,6 @@ module.exports = {
     },
     handleError: {
         enabled: true,
-        debug: false,
         isJson: false,
     },
     bodyParser: {
@@ -49,6 +48,7 @@ module.exports = {
         },
     },
     bruteForce: {
+        mongoStore: true,
         collectionName: 'BRUTE_FORCE',
         maxRequest: 60,
         limitTime: 60 * 1000,
