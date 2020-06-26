@@ -29,16 +29,8 @@ module.exports = (app, config) => {
         // Add this line to include winston logging
         logger.error(`${error.code} - ${error.message} - ${req.originalUrl} - ${req.method} - ${req.ip} \n${error.stack}`);
 
-        let debugMode = false;
-        const stackError = {};
-        if (config.handleError.debug) {
-            debugMode = true;
-            // Add stack error when debug ON
-            stackError.stack = error.stack.split('\n');
-        } else {
-            // Remove stack error when debug OFF
-            delete error.stack;
-        }
+        // Delete error stack
+        delete error.stack;
 
         if (config.handleError.isJson || req.xhr) {
             if ((req.headers['content-type'] || '').indexOf('multipart/form-data;') !== -1) {
@@ -49,10 +41,7 @@ module.exports = (app, config) => {
                     status: false,
                     code: error.code,
                     message: error.message,
-                    error: {
-                        ...error,
-                        ...stackError,
-                    },
+                    error,
                 });
             }
         } else {
@@ -61,7 +50,6 @@ module.exports = (app, config) => {
 
             return res.render('error/error', {
                 error,
-                debugMode,
                 title,
                 bodyClass: 'page-error',
                 app: config.app,
