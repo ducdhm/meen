@@ -1,12 +1,11 @@
 const express = require('express');
+const http = require('http');
 const { getWinstonLogger } = require('@meenjs/utils');
 const buildMenu = require('./buildMenu');
 const initResolver = require('./initResolver');
 const initUploader = require('./initUploader');
 const redirectTo = require('./redirectTo');
 const getConfig = require('./getConfig');
-const en = require('./locale/en');
-const vi = require('./locale/vi');
 
 module.exports = (appName, config, modules) => {
     const logger = getWinstonLogger('composeApp');
@@ -22,8 +21,10 @@ module.exports = (appName, config, modules) => {
     // --------------------------------
     const appConfig = getConfig(appName, config, logger);
     const app = express();
+    const server  = http.createServer(app);
     app.enable('strict routing');
     app.id = appName;
+    app.server = server;
     app.config = appConfig;
     app.LOCALE = appConfig.locales[appConfig.lang];
 
@@ -38,7 +39,7 @@ module.exports = (appName, config, modules) => {
     app.run = () => {
         let appPort = appConfig.port[appName];
 
-        app.listen(
+        server.listen(
             appPort,
             () => logger.info(`Server "${appName}" (v${appConfig.info.version}) server started at http://localhost:${appPort}`),
         );
