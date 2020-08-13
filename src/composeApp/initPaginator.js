@@ -1,7 +1,7 @@
 module.exports = (Model, originItemPerPage) => {
     return {
         get: async (query, page, itemPerPage, improveQueryBuild) => {
-            page = isNaN(page) ? 1 : page;
+            let currentPage = isNaN(page) ? 1 : page;
 
             if (!itemPerPage) {
                 itemPerPage = originItemPerPage;
@@ -18,12 +18,12 @@ module.exports = (Model, originItemPerPage) => {
             }
 
             const totalPage = await Model.countDocuments(query).then(total => Math.ceil(total / itemPerPage));
-            const data = await queryBuilder.skip((itemPerPage * page) - itemPerPage).limit(itemPerPage);
+            const data = await queryBuilder.skip((itemPerPage * currentPage) - itemPerPage).limit(itemPerPage);
 
             return {
                 data,
                 totalPage,
-                page,
+                currentPage,
             }
         },
     };
