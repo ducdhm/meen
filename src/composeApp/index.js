@@ -4,6 +4,7 @@ const { getWinstonLogger } = require('@meenjs/utils');
 const buildMenu = require('./buildMenu');
 const initResolver = require('./initResolver');
 const initUploader = require('./initUploader');
+const initPaginator = require('./initPaginator');
 const redirectTo = require('./redirectTo');
 const getConfig = require('./getConfig');
 
@@ -56,6 +57,10 @@ module.exports = (appName, config, modules) => {
     // Init uploader
     // --------------------------------
     app.initUploader = (...args) => initUploader(app, ...args);
+
+    // Init paginator
+    // --------------------------------
+    app.initPaginator = (...args) => initPaginator(app, ...args);
 
     // Redirect with query string
     // --------------------------------
