@@ -60,7 +60,7 @@ module.exports = (appName, config, modules) => {
 
     // Init paginator
     // --------------------------------
-    app.initPaginator = (...args) => initPaginator(app, ...args);
+    app.initPaginator = initPaginator;
 
     // Redirect with query string
     // --------------------------------

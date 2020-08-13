@@ -61,9 +61,5 @@ module.exports = (modelName, schema, options) => {
         }
     }
 
-    // "getDataByPage" method
-    // --------------------------------
-    Model.getDataByPage = async (...params) => await getDataByPage(Model, ...params);
-
     return Model;
 };
