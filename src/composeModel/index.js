@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const getDataByPage = require('./getDataByPage');
 const composeUrlVirtual = require('./composeUrlVirtual');
 
 module.exports = (modelName, schema, options) => {
