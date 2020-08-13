@@ -1,7 +1,7 @@
 module.exports = (Model, originItemPerPage) => {
     return {
         get: async (query, page, itemPerPage, improveQueryBuild) => {
-            let currentPage = isNaN(page) ? 1 : page;
+            let currentPage = isNaN(page) ? 1 : +page;
 
             if (!itemPerPage) {
                 itemPerPage = originItemPerPage;
