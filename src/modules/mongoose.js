@@ -13,5 +13,5 @@ module.exports = (app, config) => {
         });
     });
 
-    mongoose.connect(config.mongoose.url, config.mongoose.options);
+    mongoose.connect(process.env.MONGOOSE_URL || config.mongoose.url, config.mongoose.options);
 };
