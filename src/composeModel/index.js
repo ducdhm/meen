@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const getDataByPage = require('./getDataByPage');
 const composeUrlVirtual = require('./composeUrlVirtual');
 
 module.exports = (modelName, schema, options) => {
@@ -60,10 +59,6 @@ module.exports = (modelName, schema, options) => {
             Model[key] = value;
         }
     }
-
-    // "getDataByPage" method
-    // --------------------------------
-    Model.getDataByPage = async (...params) => await getDataByPage(Model, ...params);
 
     return Model;
 };
