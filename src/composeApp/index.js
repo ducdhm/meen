@@ -9,7 +9,7 @@ const redirectTo = require('./redirectTo');
 const getConfig = require('./getConfig');
 
 module.exports = (appName, config, modules) => {
-    const logger = getWinstonLogger('composeApp');
+    const logger = getWinstonLogger('composeApp', 'info');
 
     // Overloading options
     // --------------------------------
@@ -22,7 +22,7 @@ module.exports = (appName, config, modules) => {
     // --------------------------------
     const appConfig = getConfig(appName, config, logger);
     const app = express();
-    const server  = http.createServer(app);
+    const server = http.createServer(app);
     app.enable('strict routing');
     app.id = appName;
     app.server = server;
@@ -32,7 +32,7 @@ module.exports = (appName, config, modules) => {
     // Get logger with app name
     // --------------------------------
     app.logger = (category) => {
-        return getWinstonLogger(category, appName);
+        return getWinstonLogger(category, appConfig.logger.level, appConfig.logger.logFile, appName);
     };
 
     // Alias of "listen" method

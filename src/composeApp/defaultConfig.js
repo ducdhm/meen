@@ -20,6 +20,10 @@ module.exports = {
             useUnifiedTopology: true,
         },
     },
+    logger: {
+        level: 'info',
+        logFile: false,
+    },
     cors: '*',
     session: {
         secret: 'M.E.E.N',
