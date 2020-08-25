@@ -11,7 +11,6 @@ module.exports = (app, config) => {
             resave: true,
             saveUninitialized: true,
             cookie: {
-                expires: config.session.expires,
                 maxAge: config.session.maxAge,
             },
         }),
