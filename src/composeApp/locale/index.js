@@ -67,6 +67,10 @@ module.exports = {
         'Error {{ERROR_CODE}}',
         'Lỗi {{ERROR_CODE}}',
     ],
+    PAGE_ERROR__ERROR_403: [
+        'Forbidden Error',
+        'Từ Chối Truy Cập',
+    ],
     PAGE_ERROR__ERROR_404: [
         'Page Not Found',
         'Không Tìm Thấy Trang',
