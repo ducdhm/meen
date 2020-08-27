@@ -12,6 +12,7 @@ module.exports = {
     RECORD_LIST__NO_DATA: "No data",
     PAGE_ERROR__BTN: "Back to Home",
     PAGE_ERROR__TITLE: "Error {{ERROR_CODE}}",
+    PAGE_ERROR__ERROR_403: "Forbidden Error",
     PAGE_ERROR__ERROR_404: "Page Not Found",
     PAGE_ERROR__ERROR_500: "Internal Server Error",
     PAGE_ERROR__ERROR_429: "Too Many Requests",

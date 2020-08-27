@@ -12,6 +12,7 @@ module.exports = {
     RECORD_LIST__NO_DATA: "Không có dữ liệu",
     PAGE_ERROR__BTN: "Quay lại Trang chủ",
     PAGE_ERROR__TITLE: "Lỗi {{ERROR_CODE}}",
+    PAGE_ERROR__ERROR_403: "Từ Chối Truy Cập",
     PAGE_ERROR__ERROR_404: "Không Tìm Thấy Trang",
     PAGE_ERROR__ERROR_500: "Lỗi Hệ Thống",
     PAGE_ERROR__ERROR_429: "Quá Nhiều Yêu Cầu Tới Hệ Thống",
