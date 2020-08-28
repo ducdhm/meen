@@ -1,7 +1,7 @@
 const { ObjectId } = require('mongoose').Types;
 const { newError } = require('@meenjs/utils')
 
-module.exports = (Model, propName, handler, ignoreNew = false) => async (req, res, next) => {
+module.exports = (app, Model, propName, handler, ignoreNew = false) => async (req, res, next) => {
     const id = req.params.id;
     let record = null;
 

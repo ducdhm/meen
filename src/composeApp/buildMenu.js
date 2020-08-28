@@ -1,6 +1,6 @@
 const isActive = (menuItem, req) => req.url.indexOf(menuItem.href) === 0;
 
-module.exports = (menuConfig, req) => {
+module.exports = (app, menuConfig, req) => {
     let subMenu = {};
     menuConfig.forEach(item => {
         if (item.parent) {

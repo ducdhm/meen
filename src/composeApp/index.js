@@ -6,6 +6,8 @@ const initResolver = require('./initResolver');
 const initUploader = require('./initUploader');
 const initPaginator = require('./initPaginator');
 const redirectTo = require('./redirectTo');
+const checkPermission = require('./checkPermission');
+const requirePermission = require('./requirePermission');
 const getConfig = require('./getConfig');
 
 module.exports = (appName, config, modules) => {
@@ -48,23 +50,31 @@ module.exports = (appName, config, modules) => {
 
     // Build menu
     // --------------------------------
-    app.buildMenu = buildMenu;
+    app.buildMenu = (menuConfig, req) => buildMenu(app, menuConfig, req);
 
     // Init resolver
     // --------------------------------
-    app.initResolver = initResolver;
+    app.initResolver = (Model, propName, handler, ignoreNew) => initResolver(app, Model, propName, handler, ignoreNew);
 
     // Init uploader
     // --------------------------------
-    app.initUploader = (...args) => initUploader(app, ...args);
+    app.initUploader = (options) => initUploader(app, options);
+
+    // Require permission middlewares
+    // --------------------------------
+    app.requirePermission = (permission) => requirePermission(app, permission);
+
+    // Check permission
+    // --------------------------------
+    app.checkPermission = (permission) => checkPermission(app, permission);
 
     // Init paginator
     // --------------------------------
-    app.initPaginator = initPaginator;
+    app.initPaginator = (Model, originItemPerPage) => initPaginator(app, Model, originItemPerPage);
 
     // Redirect with query string
     // --------------------------------
-    app.redirectTo = redirectTo;
+    app.redirectTo = (url, ignoreQueryList) => redirectTo(app, url, ignoreQueryList);
 
     // Preset
     // --------------------------------
