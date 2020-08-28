@@ -1,7 +1,7 @@
 const { newError } = require('@meenjs/utils');
 
 module.exports = (app, permission) => async (req, res, next) => {
-    let { role, LOCALE } = app;
+    let { config: role, LOCALE } = app;
     let userPermission = role[req.user.role];
 
     if (req.user.god) {
