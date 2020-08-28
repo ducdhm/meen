@@ -7,6 +7,7 @@ const initUploader = require('./initUploader');
 const initPaginator = require('./initPaginator');
 const redirectTo = require('./redirectTo');
 const checkPermission = require('./checkPermission');
+const requirePermission = require('./requirePermission');
 const getConfig = require('./getConfig');
 
 module.exports = (appName, config, modules) => {
@@ -59,7 +60,11 @@ module.exports = (appName, config, modules) => {
     // --------------------------------
     app.initUploader = (options) => initUploader(app, options);
 
-    // Init uploader
+    // Require permission middlewares
+    // --------------------------------
+    app.requirePermission = (permission) => requirePermission(app, permission);
+
+    // Check permission
     // --------------------------------
     app.checkPermission = (permission) => checkPermission(app, permission);
 

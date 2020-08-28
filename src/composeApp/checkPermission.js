@@ -1,16 +1,10 @@
-const { newError } = require('@meenjs/utils');
-
-module.exports = (app, permission) => async (req, res, next) => {
-    let { config: { role }, LOCALE } = app;
+module.exports = (app, req, permission) => {
+    let { config: { role } } = app;
     let userPermission = role[req.user.role];
 
     if (req.user.god) {
-        return next();
+        return true;
     }
 
-    if (userPermission.indexOf(permission) === -1) {
-        return next(newError(403, LOCALE.PAGE_ERROR__ERROR_403));
-    }
-
-    next();
+    return userPermission.indexOf(permission) !== -1;
 };
