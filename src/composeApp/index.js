@@ -66,7 +66,7 @@ module.exports = (appName, config, modules) => {
 
     // Check permission
     // --------------------------------
-    app.checkPermission = (permission) => checkPermission(app, permission);
+    app.checkPermission = (req, permission) => checkPermission(app, req, permission);
 
     // Init paginator
     // --------------------------------

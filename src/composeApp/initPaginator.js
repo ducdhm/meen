@@ -17,11 +17,13 @@ module.exports = (app, Model, originItemPerPage = 20) => {
                 queryBuilder = improveQueryBuild(queryBuilder);
             }
 
-            const totalPage = await Model.countDocuments(query).then(total => Math.ceil(total / itemPerPage));
+            const totalRecord = await Model.countDocuments(query);
+            const totalPage = Math.ceil(totalRecord / itemPerPage);
             const data = await queryBuilder.skip((itemPerPage * currentPage) - itemPerPage).limit(itemPerPage);
 
             return {
                 data,
+                totalRecord,
                 totalPage,
                 currentPage,
             }
