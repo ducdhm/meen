@@ -8,6 +8,8 @@ const initPaginator = require('./initPaginator');
 const redirectTo = require('./redirectTo');
 const checkPermission = require('./checkPermission');
 const requirePermission = require('./requirePermission');
+const initFormatter = require('./initFormatter');
+const setLocals = require('./setLocals');
 const getConfig = require('./getConfig');
 
 module.exports = (appName, config, modules) => {
@@ -71,6 +73,14 @@ module.exports = (appName, config, modules) => {
     // Init paginator
     // --------------------------------
     app.initPaginator = (Model, originItemPerPage) => initPaginator(app, Model, originItemPerPage);
+
+    // Init formatter
+    // --------------------------------
+    app.initFormatter = (extraFormatter) => initFormatter(app, extraFormatter);
+
+    // Set locals
+    // --------------------------------
+    app.setLocals = (key, value) => setLocals(app, key, value);
 
     // Redirect with query string
     // --------------------------------
