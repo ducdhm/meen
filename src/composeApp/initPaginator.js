@@ -1,4 +1,4 @@
-module.exports = (app, Model, originItemPerPage = 20) => {
+module.exports = (app, Model, originItemPerPage = app.config.paginator.itemPerPage) => {
     return {
         get: async (query, page, itemPerPage, improveQueryBuild) => {
             let currentPage = isNaN(page) ? 1 : +page;

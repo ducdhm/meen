@@ -56,4 +56,8 @@ module.exports = {
         maxRequest: 60,
         limitTime: 60 * 1000,
     },
+    paginator: {
+        itemPerPage: 20,
+        pageStep: 2,
+    },
 };
