@@ -1,4 +1,4 @@
-module.exports = (app) => (req, res, next) => {
+module.exports = (req, res, next) => {
     req.returnJsonError = true;
     next();
 };

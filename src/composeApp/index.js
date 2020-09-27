@@ -10,6 +10,7 @@ const checkPermission = require('./checkPermission');
 const requirePermission = require('./requirePermission');
 const initFormatter = require('./initFormatter');
 const setLocals = require('./setLocals');
+const returnJsonError = require('./returnJsonError');
 const getConfig = require('./getConfig');
 
 module.exports = (appName, config, modules) => {
@@ -85,6 +86,10 @@ module.exports = (appName, config, modules) => {
     // Redirect with query string
     // --------------------------------
     app.redirectTo = (url, ignoreQueryList) => redirectTo(app, url, ignoreQueryList);
+
+    // Return error as JSON format
+    // --------------------------------
+    app.returnJsonError = returnJsonError;
 
     // Preset
     // --------------------------------
