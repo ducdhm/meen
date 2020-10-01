@@ -11,6 +11,7 @@ const requirePermission = require('./requirePermission');
 const initFormatter = require('./initFormatter');
 const setLocals = require('./setLocals');
 const returnJsonError = require('./returnJsonError');
+const loadLocalPackage = require('./loadLocalPackage');
 const getConfig = require('./getConfig');
 
 module.exports = (appName, config, modules) => {
@@ -50,6 +51,10 @@ module.exports = (appName, config, modules) => {
             () => logger.info(`Server "${appName}" (v${appConfig.info.version}) server started at http://localhost:${appPort}`),
         );
     };
+
+    // Auto load @local package
+    // --------------------------------
+    loadLocalPackage(app, logger);
 
     // Build menu
     // --------------------------------
