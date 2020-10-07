@@ -12,7 +12,6 @@ module.exports = (app, extraFormatter) => {
         currentYear: () => (new Date()).getFullYear(),
         typeOf: (value) => typeof value,
         inArray: (array, item) => Array.isArray(array) && array.includes(item),
-
         option: (text, value, isSelected) => {
             return `<option value="${value}" ${isSelected ? 'selected' : ''}>${text}</option>`;
         },
@@ -31,19 +30,19 @@ module.exports = (app, extraFormatter) => {
             return `<input type="checkbox" name="${name}" value="${value}" class="${extraClass}" ${attrId} ${attrChecked} ${attrDisabled} />`;
         },
         formatDate: (time) => {
-            return moment(time).format('DD/MM/YYYY');
+            return time ? moment(time).format('DD/MM/YYYY') : '';
         },
         formatDateTime: (time) => {
-            return moment(time).format('DD/MM/YYYY HH:mm');
+            return time ? moment(time).format('DD/MM/YYYY HH:mm') : '';
         },
         formatDateTimeLong: (time) => {
-            return moment(time).format('DD/MM/YYYY HH:mm:ss');
+            return time ? moment(time).format('DD/MM/YYYY HH:mm:ss') : '';
         },
         formatTime: (time) => {
-            return moment(time).format('HH:mm');
+            return time ? moment(time).format('HH:mm') : '';
         },
         formatTimeLong: (time) => {
-            return moment(time).format('HH:mm:ss');
+            return time ? moment(time).format('HH:mm:ss') : '';
         },
         formatCurrency: (money, toFixed = 0) => money ? money.toFixed(toFixed).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : '0',
         getRecordNo: (index, currentPage) => (currentPage - 1) * config.paginator.itemPerPage + (index + 1),
@@ -60,5 +59,5 @@ module.exports = (app, extraFormatter) => {
             return pairQuery.length > 0 ? '?' + pairQuery.join('&') : '';
         },
         ...extraFormatter,
-    }
+    };
 };
