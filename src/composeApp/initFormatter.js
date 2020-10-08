@@ -12,8 +12,12 @@ module.exports = (app, extraFormatter) => {
         currentYear: () => (new Date()).getFullYear(),
         typeOf: (value) => typeof value,
         inArray: (array, item) => Array.isArray(array) && array.includes(item),
-        option: (text, value, isSelected) => {
-            return `<option value="${value}" ${isSelected ? 'selected' : ''}>${text}</option>`;
+        option: (text, value, isSelected, extraClass = '', id, isDisabled) => {
+            let attrId = id ? `id="${id}"` : '';
+            let attrSelected = isSelected ? 'selected' : '';
+            let attrDisabled = isDisabled ? 'disabled' : '';
+
+            return `<option value="${value}" class="${extraClass}" ${attrId} ${attrSelected} ${attrDisabled}>${text}</option>`;
         },
         radio: (name, value, isChecked, extraClass = '', id, isDisabled) => {
             let attrId = id ? `id="${id}"` : '';
