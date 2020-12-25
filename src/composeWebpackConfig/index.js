@@ -95,6 +95,7 @@ module.exports = (name, entry, options) => merge({
                         },
                     },
                     'css-loader',
+                    'resolve-url-loader',
                     'sass-loader',
                 ],
             },
