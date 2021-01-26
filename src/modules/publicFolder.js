@@ -4,6 +4,17 @@ const express = require('express');
 
 module.exports = (app, config) => {
     const logger = app.logger('STATIC');
+    const setupStatic = (publicFolderPath) => express.static(
+        publicFolderPath,
+        config.publicFolder.debug ? {
+            index: false,
+            setHeaders: (response, filePath) => {
+                // Logging work
+                logger.debug(`Serve "${response.req.originalUrl}" from "${filePath}"`);
+            },
+        } : null,
+    );
+
     const setupPublic = (publicUrl, publicFolderPath) => {
         app.use(
             publicUrl,
@@ -21,10 +32,10 @@ module.exports = (app, config) => {
     };
 
     if (typeof config.publicFolder.path === 'string') {
-        setupPublic('/public', config.publicFolder.path);
+        app.use(setupStatic(config.publicFolder.path));
     } else {
         for (let url in config.publicFolder.path) {
-            setupPublic(url, config.publicFolder.path[url]);
+            app.use(url, setupStatic(config.publicFolder.path[url]));
         }
     }
 };
