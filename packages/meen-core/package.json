@@ -42,5 +42,6 @@
     "devDependencies": {
         "handlebars": "^4.7.6",
         "publish-new-version": "^1.0.0"
-    }
+    },
+    "gitHead": "dc09475e43922bc9e13bfea05253fea1f9da2a67"
 }
