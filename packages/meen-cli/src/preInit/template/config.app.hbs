@@ -1,0 +1,36 @@
+const packageJson = require('../../package');
+const LANG = 'vi';
+const LOCALE = require(`@local/locale/${LANG}`);
+
+module.exports = {
+    lang: LANG,
+    info: {
+        title: packageJson.description,
+        version: packageJson.version,
+    },
+    mongoose: {
+        url: `mongodb://localhost/${packageJson.name}`
+    },
+    uploadPath: {
+        image: 'public/uploads/image/',
+    },
+    port: {
+        // Add your app port here with format "yourAppName: portNumber"
+        api: 9000,
+        admin: 5000,
+    },
+    handleError: {
+        locale: {
+            error404: LOCALE.PAGE_ERROR__ERROR_404,
+            error500: LOCALE.PAGE_ERROR__ERROR_500,
+            title: LOCALE.PAGE_ERROR__TITLE,
+        },
+    },
+    session: {
+        secret: packageJson.name + '@' + packageJson.version,
+    },
+    jwt: {
+        secret: packageJson.name + '@' + packageJson.version,
+        expires: 60 * 60 * 24,
+    },
+};

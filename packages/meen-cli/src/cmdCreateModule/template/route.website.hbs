@@ -1,0 +1,35 @@
+const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
+
+module.exports = (app, controller) => {
+    app.get(
+        '/{{ nameKebab }}',
+        app.redirectTo('/{{ nameKebab }}/'),
+    );
+
+    app.get(
+        '/{{ nameKebab }}/',
+        ensureLoggedIn,
+        controller.show{{ namePascal }}List,
+    );
+
+    app.get(
+        '/{{ nameKebab }}/:id',
+        ensureLoggedIn,
+        controller.resolver,
+        controller.show{{ namePascal }}Details,
+    );
+
+    app.post(
+        '/{{ nameKebab }}/:id',
+        ensureLoggedIn,
+        controller.resolver,
+        controller.save{{ namePascal }},
+    );
+
+    app.post(
+        '/{{ nameKebab }}/:id/delete',
+        ensureLoggedIn,
+        controller.resolver,
+        controller.delete{{ namePascal }},
+    );
+};

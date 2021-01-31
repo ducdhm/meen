@@ -1,0 +1,14 @@
+module.exports = (app, controller) => {
+    const auth = require('../../auth/jwt')(app);
+
+    app.get(
+        '/ping',
+        controller.ping,
+    );
+
+    app.get(
+        '/api/ping',
+        auth,
+        controller.pingAuth,
+    );
+};

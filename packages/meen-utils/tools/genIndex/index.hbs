@@ -1,0 +1,5 @@
+module.exports = {
+{{#each utils}}
+    {{this}}: require('./src/{{this}}'),
+{{/each}}
+};

@@ -1,0 +1,6 @@
+module.exports = (app) => {
+    require('./{{ name }}.route')(
+        app,
+        require('./{{ name }}.controller')(app),
+    );
+};

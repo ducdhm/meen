@@ -1,0 +1,6 @@
+module.exports = (app) => {
+    require('./ping.route')(
+        app,
+        require('./ping.controller')(app),
+    );
+};

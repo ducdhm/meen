@@ -1,0 +1,12 @@
+const { composeApp } = require('@meenjs/core');
+
+composeApp(
+    '{{ appName }}',
+    {
+        preset: 'api',
+    },
+    [
+        require('./module/ping'),
+        require('./module/user'),
+    ],
+).run();

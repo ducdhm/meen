@@ -1,0 +1,32 @@
+const { composeModel } = require('@meenjs/core');
+const { getObjectValues } = require('@meenjs/utils');
+const uniqueValidator = require('mongoose-unique-validator');
+const role = require('./role');
+
+module.exports = composeModel('User', {
+    password: {
+        type: String,
+        select: false,
+    },
+    username: {
+        type: String,
+        unique: true,
+    },
+    role: {
+        type: Boolean,
+        enum: getObjectValues(role, 'value'),
+        default: role.NORMAL.value,
+    },
+}, {
+    virtual: {
+        url: function () {
+            return `/user/${this._id}`;
+        },
+    },
+    plugins: [
+        uniqueValidator,
+    ],
+    static: {
+        role,
+    }
+});

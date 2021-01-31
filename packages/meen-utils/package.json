@@ -1,0 +1,41 @@
+{
+    "name": "@meenjs/utils",
+    "version": "1.4.7",
+    "description": "M.E.E.N Utilities",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ducdhm/meen-utils.git"
+    },
+    "keywords": [
+        "meen",
+        "mongodb",
+        "nodejs",
+        "expressjs",
+        "edgejs"
+    ],
+    "author": "Duc Doan <ducdhm@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ducdhm/meen-utils/issues"
+    },
+    "homepage": "https://github.com/ducdhm/meen-utils#readme",
+    "scripts": {
+        "test": "jest",
+        "build-index": "node run tools/genIndex"
+    },
+    "dependencies": {
+        "colors": "^1.4.0",
+        "get-root-path": "^2.0.2",
+        "split": "^1.0.1",
+        "winston": "^3.3.3",
+        "winston-daily-rotate-file": "^4.5.0",
+        "xlsx": "^0.16.3"
+    },
+    "devDependencies": {
+        "handlebars": "^4.7.6",
+        "jest": "^26.1.0",
+        "make-dir": "^3.1.0",
+        "publish-new-version": "^1.0.0"
+    }
+}

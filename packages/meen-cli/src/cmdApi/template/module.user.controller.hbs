@@ -1,0 +1,84 @@
+const { User } = require('@local/models');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+module.exports = (app) => {
+    const { config } = app;
+    const logger = app.logger('controllers/userController');
+    const controller = {};
+
+    controller.showUserList = async (req, res, next) => {
+        try {
+            const users = await User.find();
+            logger.debug('showUserList: %s record(s)', users.length);
+
+            return res.json({
+                users,
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    controller.login = async (req, res, next) => {
+        try {
+            const { username, password } = req.body;
+            logger.debug('login: "%s"', username);
+
+            const user = await User.findOne({
+                username,
+            }, '+password');
+
+            if (user && bcrypt.compareSync(password, user.password)) {
+                const payload = {
+                    username,
+                };
+                const jwtToken = jwt.sign(payload, config.jwt.secret, {
+                    expiresIn: config.jwt.expires,
+                });
+
+                logger.info('jwtToken: ' + jwtToken);
+
+                return res.json({
+                    access_token: jwtToken,
+                    username,
+                });
+            } else {
+                return res.json({
+                    status: false,
+                    message: 'Username or password invalid',
+                })
+            }
+
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    controller.register = async (req, res, next) => {
+        try {
+            const { username, password } = req.body;
+            logger.debug('register: "%s"', username);
+
+            let user = new User({
+                username,
+                password: bcrypt.hashSync(password),
+            });
+
+            await user.save();
+
+            return res.json({
+                status: true,
+                data: {
+                    ...user._doc,
+                    password: '********',
+                },
+                message: 'Registered',
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    return controller;
+};

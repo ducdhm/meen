@@ -1,0 +1,19 @@
+module.exports = (app, controller) => {
+    const auth = require('../../auth/jwt')(app);
+
+    app.get(
+        '/api/user',
+        auth,
+        controller.showUserList,
+    );
+
+    app.post(
+        '/api/login',
+        controller.login,
+    );
+
+    app.post(
+        '/api/register',
+        controller.register,
+    );
+};
