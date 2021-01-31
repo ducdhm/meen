@@ -1,6 +1,6 @@
 {
     "name": "@meenjs/utils",
-    "version": "1.4.7",
+    "version": "1.4.8",
     "description": "M.E.E.N Utilities",
     "main": "index.js",
     "repository": {
