@@ -5,7 +5,7 @@
     "main": "index.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ducdhm/meen-core.git"
+        "url": "git+https://github.com/ducdhm/meen.git"
     },
     "keywords": [
         "meen",
@@ -17,9 +17,9 @@
     "author": "Duc Doan <ducdhm@gmail.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/ducdhm/meen-core/issues"
+        "url": "https://github.com/ducdhm/meen/issues"
     },
-    "homepage": "https://github.com/ducdhm/meen-core#readme",
+    "homepage": "https://github.com/ducdhm/meen#readme",
     "scripts": {
         "prepare": "node tools/genLocaleFile && node tools/genIndex"
     },
@@ -47,5 +47,5 @@
         "publish-new-version": "^1.0.1",
         "update-index": "^1.0.2"
     },
-    "gitHead": "96cef926a8bcc9bf8b4cf44011665dccf74a2d6f"
+    "gitHead": "b0246d605629170d8817668cacdd7a4b40949850"
 }
