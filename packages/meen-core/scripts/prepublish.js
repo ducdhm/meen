@@ -1,0 +1,2 @@
+require('./genIndex');
+require('./genModuleIndex');

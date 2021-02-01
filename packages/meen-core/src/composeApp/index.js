@@ -8,6 +8,8 @@ const initPaginator = require('./initPaginator');
 const redirectTo = require('./redirectTo');
 const checkPermission = require('./checkPermission');
 const requirePermission = require('./requirePermission');
+const checkRole = require('./checkRole');
+const requireRole = require('./requireRole');
 const initFormatter = require('./initFormatter');
 const setLocals = require('./setLocals');
 const returnJsonError = require('./returnJsonError');
@@ -75,6 +77,14 @@ module.exports = (appName, config, modules) => {
     // Check permission
     // --------------------------------
     app.checkPermission = (req, permission) => checkPermission(app, req, permission);
+
+    // Require role middlewares
+    // --------------------------------
+    app.requireRole = (roleList) => requireRole(roleList);
+
+    // Check role
+    // --------------------------------
+    app.checkRole = (req, roleList) => checkRole(req, roleList);
 
     // Init paginator
     // --------------------------------
