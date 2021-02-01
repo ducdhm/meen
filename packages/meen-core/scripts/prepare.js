@@ -1,2 +1,2 @@
-require('./genIndex');
+require('./genLocaleFile');
 require('./genModuleIndex');

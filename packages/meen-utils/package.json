@@ -36,7 +36,8 @@
         "handlebars": "^4.7.6",
         "jest": "^26.1.0",
         "make-dir": "^3.1.0",
-        "publish-new-version": "^1.0.0"
+        "publish-new-version": "^1.0.0",
+        "update-index": "^1.0.1"
     },
     "gitHead": "96cef926a8bcc9bf8b4cf44011665dccf74a2d6f"
 }

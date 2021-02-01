@@ -21,7 +21,7 @@ for (let locale in locales) {
 const template = fs.readFileSync(path.join(__dirname, './index.hbs'), 'utf8');
 for (let lang of langs) {
     fs.writeFileSync(
-        resolvePath('src', 'composeApp', 'locale', `${lang.LANG}.js`),
+        path.join(__dirname, '..', '..', 'src', 'composeApp', 'locale', `${lang.LANG}.js`),
         Handlebars.compile(template)({
             content: JSON.stringify(lang, ' ', 4).replace(/"([^"]+)":/g, '$1:'),
         }),
