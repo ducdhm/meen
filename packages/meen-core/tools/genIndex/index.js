@@ -1,4 +1,4 @@
-const { resolvePath, getLogger } = require('@meenjs/utils');
+const { getLogger } = require('@meenjs/utils');
 const logger = getLogger();
 const path = require('path');
 const updateIndex = require('update-index');

@@ -20,6 +20,9 @@
         "url": "https://github.com/ducdhm/meen-core/issues"
     },
     "homepage": "https://github.com/ducdhm/meen-core#readme",
+    "scripts": {
+        "prepare": "node tools/genLocaleFile && node tools/genIndex"
+    },
     "dependencies": {
         "@meenjs/utils": "^1.4.15",
         "body-parser": "^1.19.0",

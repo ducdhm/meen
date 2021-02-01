@@ -22,7 +22,7 @@
     "homepage": "https://github.com/ducdhm/meen-utils#readme",
     "scripts": {
         "test": "jest",
-        "build-index": "node run tools/genIndex"
+        "prepare": "node run tools/genIndex"
     },
     "dependencies": {
         "colors": "^1.4.0",
