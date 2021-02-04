@@ -10,6 +10,7 @@ module.exports = {
     getUploadFileName: require('./src/getUploadFileName'),
     getWinstonLogger: require('./src/getWinstonLogger'),
     isValidJsonString: require('./src/isValidJsonString'),
+    loopArray: require('./src/loopArray'),
     newError: require('./src/newError'),
     normalizeSpace: require('./src/normalizeSpace'),
     removeTone: require('./src/removeTone'),
