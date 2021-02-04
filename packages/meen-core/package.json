@@ -45,7 +45,7 @@
     "devDependencies": {
         "handlebars": "^4.7.6",
         "publish-new-version": "^1.0.1",
-        "update-index": "^1.0.2"
+        "update-index": "^1.0.3"
     },
     "gitHead": "b0246d605629170d8817668cacdd7a4b40949850"
 }
