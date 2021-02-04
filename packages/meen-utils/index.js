@@ -9,6 +9,7 @@ module.exports = {
     getObjectValues: require('./src/getObjectValues'),
     getUploadFileName: require('./src/getUploadFileName'),
     getWinstonLogger: require('./src/getWinstonLogger'),
+    isValidJsonString: require('./src/isValidJsonString'),
     newError: require('./src/newError'),
     normalizeSpace: require('./src/normalizeSpace'),
     removeTone: require('./src/removeTone'),
