@@ -8,7 +8,6 @@ module.exports = (app, extraFormatter) => {
     }
 
     return {
-        currentDateFormatted: () => moment(new Date()).format('DD/MM/YYYY'),
         currentYear: () => (new Date()).getFullYear(),
         typeOf: (value) => typeof value,
         inArray: (array, item) => Array.isArray(array) && array.includes(item),
@@ -32,6 +31,9 @@ module.exports = (app, extraFormatter) => {
             let attrDisabled = isDisabled ? 'disabled' : '';
 
             return `<input type="checkbox" name="${name}" value="${value}" class="${extraClass}" ${attrId} ${attrChecked} ${attrDisabled} />`;
+        },
+        formatDateIso: (time) => {
+            return time ? moment(time).toISOString() : '';
         },
         formatDate: (time) => {
             return time ? moment(time).format('DD/MM/YYYY') : '';
