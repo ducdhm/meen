@@ -42,6 +42,7 @@ module.exports = {
     handleError: {
         enabled: true,
         isJson: false,
+        onError: null,
     },
     bodyParser: {
         json: {

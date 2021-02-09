@@ -8,7 +8,7 @@ module.exports = (app, config) => {
         next(newError(404));
     });
 
-    app.use((error, req, res, next) => {
+    app.use(async (error, req, res, next) => {
         error.code = error.code || 500;
 
         // Normalize message for common error code
@@ -28,6 +28,8 @@ module.exports = (app, config) => {
 
         // Add this line to include winston logging
         logger.error(`${error.code} - ${error.message} - ${req.originalUrl} - ${req.method} - ${req.ip} \n${error.stack}`);
+
+        typeof config.handleError.onError === 'function' && await config.handleError.onError(error, app, config);
 
         // Delete error stack
         delete error.stack;
