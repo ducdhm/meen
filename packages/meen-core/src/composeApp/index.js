@@ -15,19 +15,12 @@ const returnJsonError = require('./methods/returnJsonError');
 const loadLocalPackage = require('./loadLocalPackage');
 const getConfig = require('./getConfig');
 
-module.exports = (appName, config, modules) => {
+module.exports = (appName, modules) => {
     const logger = getWinstonLogger('composeApp', 'info');
-
-    // Overloading options
-    // --------------------------------
-    if (typeof modules === 'undefined') {
-        modules = config;
-        config = {};
-    }
 
     // Config
     // --------------------------------
-    const appConfig = getConfig(appName, config, logger);
+    const appConfig = getConfig(appName, logger);
     const app = express();
     const server = http.createServer(app);
     app.enable('strict routing');
