@@ -1,4 +1,4 @@
-module.exports = (app, controller) => {
+module.exports = (app, config, controller) => {
     const ensureLoggedIn = require('../../middlewares/ensureLoggedIn')(app);
 
     app.get(

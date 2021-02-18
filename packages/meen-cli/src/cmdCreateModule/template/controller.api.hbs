@@ -1,7 +1,7 @@
 const { {{ namePascal }}Model } = require('@local/models');
 
-module.exports = (app) => {
-    const { config, LOCALE } = app;
+module.exports = (app, config) => {
+    const { LOCALE } = app;
     const logger = app.logger('controller/{{ name }}');
     const controller = {};
 

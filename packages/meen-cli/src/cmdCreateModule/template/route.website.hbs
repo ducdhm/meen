@@ -1,6 +1,6 @@
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 
-module.exports = (app, controller) => {
+module.exports = (app, config, controller) => {
     app.get(
         '/{{ nameKebab }}',
         app.redirectTo('/{{ nameKebab }}/'),
