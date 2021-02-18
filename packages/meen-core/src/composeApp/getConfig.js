@@ -17,8 +17,11 @@ module.exports = (appName, config, logger) => {
     if (fs.existsSync(configFolderPath)) {
         getFileList(configFolderPath).forEach((file) => {
             const fileInfo = path.parse(file);
+
             try {
-                appFileConfig[fileInfo.name] = require(file);
+                if (fileInfo.name !== 'app') {
+                    appFileConfig[fileInfo.name] = require(file);
+                }
             } catch (e) {
                 logger.warn(`Error when reading "${file}" file\n%o`, e);
             }

@@ -9,6 +9,9 @@ module.exports = {
         vi,
     },
     preset: null,
+    loadLocalPackage: {
+        enabled: false,
+    },
     info: {
         title: 'M.E.E.N',
         version: '1.0.0',
@@ -42,7 +45,6 @@ module.exports = {
     handleError: {
         enabled: true,
         isJson: false,
-        onError: null,
     },
     bodyParser: {
         json: {

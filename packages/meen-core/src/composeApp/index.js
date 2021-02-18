@@ -1,18 +1,17 @@
 const express = require('express');
 const http = require('http');
 const { getWinstonLogger } = require('@meenjs/utils');
-const buildMenu = require('./buildMenu');
-const initResolver = require('./initResolver');
-const initUploader = require('./initUploader');
-const initPaginator = require('./initPaginator');
-const redirectTo = require('./redirectTo');
-const checkPermission = require('./checkPermission');
-const requirePermission = require('./requirePermission');
-const checkRole = require('./checkRole');
-const requireRole = require('./requireRole');
-const initFormatter = require('./initFormatter');
-const setLocals = require('./setLocals');
-const returnJsonError = require('./returnJsonError');
+const buildMenu = require('./methods/buildMenu');
+const initResolver = require('./methods/initResolver');
+const initUploader = require('./methods/initUploader');
+const initPaginator = require('./methods/initPaginator');
+const redirectTo = require('./methods/redirectTo');
+const checkPermission = require('./methods/checkPermission');
+const requirePermission = require('./methods/requirePermission');
+const checkRole = require('./methods/checkRole');
+const requireRole = require('./methods/requireRole');
+const initFormatter = require('./methods/initFormatter');
+const returnJsonError = require('./methods/returnJsonError');
 const loadLocalPackage = require('./loadLocalPackage');
 const getConfig = require('./getConfig');
 
@@ -56,54 +55,40 @@ module.exports = (appName, config, modules) => {
 
     // Auto load @local package
     // --------------------------------
-    loadLocalPackage(app, logger);
+    appConfig.loadLocalPackage.enabled && loadLocalPackage(app, logger);
 
-    // Build menu
+    // Methods
     // --------------------------------
     app.buildMenu = (menuConfig, req) => buildMenu(app, menuConfig, req);
 
     // Init resolver
-    // --------------------------------
     app.initResolver = (Model, propName, handler, ignoreNew) => initResolver(app, Model, propName, handler, ignoreNew);
 
     // Init uploader
-    // --------------------------------
     app.initUploader = (options) => initUploader(app, options);
 
     // Require permission middlewares
-    // --------------------------------
     app.requirePermission = (permission) => requirePermission(app, permission);
 
     // Check permission
-    // --------------------------------
     app.checkPermission = (req, permission) => checkPermission(app, req, permission);
 
     // Require role middlewares
-    // --------------------------------
     app.requireRole = (roleList) => requireRole(roleList);
 
     // Check role
-    // --------------------------------
     app.checkRole = (req, roleList) => checkRole(req, roleList);
 
     // Init paginator
-    // --------------------------------
     app.initPaginator = (Model, originItemPerPage) => initPaginator(app, Model, originItemPerPage);
 
     // Init formatter
-    // --------------------------------
     app.initFormatter = (extraFormatter) => initFormatter(app, extraFormatter);
 
-    // Set locals
-    // --------------------------------
-    app.setLocals = (key, value) => setLocals(app, key, value);
-
     // Redirect with query string
-    // --------------------------------
     app.redirectTo = (url, ignoreQueryList) => redirectTo(app, url, ignoreQueryList);
 
     // Return error as JSON format
-    // --------------------------------
     app.returnJsonError = returnJsonError;
 
     // Preset
