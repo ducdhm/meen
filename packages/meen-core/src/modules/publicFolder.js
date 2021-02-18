@@ -10,26 +10,10 @@ module.exports = (app, config) => {
             index: false,
             setHeaders: (response, filePath) => {
                 // Logging work
-                logger.debug(`Serve "${response.req.originalUrl}" from "${filePath}"`);
+                logger.debug(`"${response.req.originalUrl}" -> "${filePath}"`);
             },
         } : null,
     );
-
-    const setupPublic = (publicUrl, publicFolderPath) => {
-        app.use(
-            publicUrl,
-            express.static(
-                publicFolderPath,
-                config.publicFolder.debug ? {
-                    index: false,
-                    setHeaders: (response, filePath) => {
-                        // Logging work
-                        logger.debug(`Serve "${response.req.originalUrl}" from "${filePath}"`);
-                    },
-                } : null,
-            ),
-        );
-    };
 
     if (typeof config.publicFolder.path === 'string') {
         app.use(setupStatic(config.publicFolder.path));
