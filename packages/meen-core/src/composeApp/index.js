@@ -12,6 +12,7 @@ const checkRole = require('./methods/checkRole');
 const requireRole = require('./methods/requireRole');
 const initFormatter = require('./methods/initFormatter');
 const returnJsonError = require('./methods/returnJsonError');
+const setLocals = require('./methods/setLocals');
 const loadLocalPackage = require('./loadLocalPackage');
 const getConfig = require('./getConfig');
 
@@ -83,6 +84,9 @@ module.exports = (appName, modules) => {
 
     // Return error as JSON format
     app.returnJsonError = returnJsonError;
+
+    // Set locals
+    app.setLocals = (key, value) => setLocals(app, key, value);
 
     // Preset
     // --------------------------------
