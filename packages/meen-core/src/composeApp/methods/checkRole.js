@@ -1,4 +1,4 @@
-module.exports = (req, roleList) => {
+module.exports = (app, req, roleList) => {
     if (req.user.god) {
         return true;
     }

@@ -67,10 +67,10 @@ module.exports = (appName, modules) => {
     app.checkPermission = (req, permission) => checkPermission(app, req, permission);
 
     // Require role middlewares
-    app.requireRole = (roleList) => requireRole(roleList);
+    app.requireRole = (roleList) => requireRole(app, roleList);
 
     // Check role
-    app.checkRole = (req, roleList) => checkRole(req, roleList);
+    app.checkRole = (req, roleList) => checkRole(app, req, roleList);
 
     // Init paginator
     app.initPaginator = (Model, originItemPerPage) => initPaginator(app, Model, originItemPerPage);
