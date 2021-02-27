@@ -16,12 +16,19 @@ const setLocals = require('./methods/setLocals');
 const loadLocalPackage = require('./loadLocalPackage');
 const getConfig = require('./getConfig');
 
-module.exports = (appName, modules) => {
+module.exports = (appName, config, modules) => {
     const logger = getWinstonLogger('composeApp', 'info');
+
+    // Overloading options
+    // --------------------------------
+    if (typeof modules === 'undefined') {
+        modules = config;
+        config = {};
+    }
 
     // Config
     // --------------------------------
-    const appConfig = getConfig(appName, logger);
+    const appConfig = getConfig(appName, config, logger);
     const app = express();
     const server = http.createServer(app);
     app.enable('strict routing');

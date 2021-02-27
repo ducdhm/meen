@@ -4,7 +4,7 @@ const deepExtend = require('deep-extend');
 const defaultConfig = require('./defaultConfig');
 const { resolvePath, getFileList } = require('@meenjs/utils');
 
-module.exports = (appName, logger) => {
+module.exports = (appName, config, logger) => {
     let localFileConfig;
     try {
         localFileConfig = require(resolvePath('@local', 'config', 'app.js'));
@@ -31,5 +31,5 @@ module.exports = (appName, logger) => {
         });
     }
 
-    return deepExtend(defaultConfig, localFileConfig, appFileConfig, appConfig);
+    return deepExtend(defaultConfig, localFileConfig, appFileConfig, appConfig, config);
 };
