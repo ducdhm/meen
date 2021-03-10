@@ -54,7 +54,7 @@ module.exports = (name) => {
     packageData['dependencies'] = {
         ...packageData['dependencies'],
         '@meenjs/core': '^1.6.1',
-        '@meenjs/utils': '^1.2.6',
+        '@dudojs/utils': '^1.2.6',
         'basic-auth': '^2.0.1',
         'bcryptjs': '^2.4.3',
         'connect-ensure-login': '^0.1.1',

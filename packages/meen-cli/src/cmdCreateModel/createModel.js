@@ -1,5 +1,6 @@
-const { getFolderList } = require('@meenjs/utils');
-const { initStructure, getTargetPath } = require('../utils/');
+const { getFolderList } = require('@dudojs/utils');
+const { getTargetPath } = require('../utils/');
+const initStructure = require('init-structure');
 const path = require('path');
 
 module.exports = (logger) => (options) => {
@@ -9,7 +10,8 @@ module.exports = (logger) => (options) => {
     const structure = {};
     structure[name] = {};
     structure[name][`index.js`] = path.join(__dirname, './template/model.index.hbs');
-    initStructure('@local/models', structure, {
+
+    initStructure(getTargetPath('@local/models'), structure, {
         name: name,
     });
 
@@ -17,7 +19,7 @@ module.exports = (logger) => (options) => {
     const structureModels = {
         'index.js': path.join(__dirname, './template/models.index.hbs'),
     };
-    initStructure('@local/models', structureModels, {
+    initStructure(getTargetPath('@local/models'), structureModels, {
         models: folderList,
     });
 
