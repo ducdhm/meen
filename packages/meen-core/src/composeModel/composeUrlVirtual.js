@@ -1,4 +1,4 @@
-const { toKebabCase } = require('@meenjs/utils');
+const { toKebabCase } = require('@dudojs/utils');
 
 module.exports = (modelName, modelSchema) => {
     const url = toKebabCase(modelName);

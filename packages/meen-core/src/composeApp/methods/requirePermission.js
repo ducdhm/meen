@@ -1,4 +1,4 @@
-const { newError } = require('@meenjs/utils');
+const { newError } = require('@dudojs/utils');
 const checkPermission = require('./checkPermission');
 
 module.exports = (app, permission) => async (req, res, next) => {

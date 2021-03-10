@@ -1,4 +1,4 @@
-const { newError } = require('@meenjs/utils');
+const { newError } = require('@dudojs/utils');
 const checkRole = require('./checkRole');
 
 module.exports = (app, roleList) => async (req, res, next) => {

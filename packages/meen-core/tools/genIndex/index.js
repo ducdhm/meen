@@ -1,4 +1,4 @@
-const { getLogger } = require('@meenjs/utils');
+const { getLogger } = require('@dudojs/utils');
 const logger = getLogger();
 const path = require('path');
 const updateIndex = require('update-index');

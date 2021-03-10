@@ -1,5 +1,5 @@
 const { ObjectId } = require('mongoose').Types;
-const { newError } = require('@meenjs/utils')
+const { newError } = require('@dudojs/utils')
 
 module.exports = (app, Model, propName, handler, ignoreNew = false) => async (req, res, next) => {
     const id = req.params.id;

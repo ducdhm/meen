@@ -1,6 +1,6 @@
 const multer = require('multer');
 const mime = require('mime-types')
-const { getUploadFileName, newError } = require('@meenjs/utils');
+const { getUploadFileName, newError } = require('@dudojs/utils');
 
 const isValidFile = function (file, acceptedFiles) {
     if (!acceptedFiles || (Array.isArray(acceptedFiles) && acceptedFiles.length === 0)) {

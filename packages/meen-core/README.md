@@ -86,7 +86,7 @@ MEEN provides presets for app types via `config.app.preset`. Order of modules wi
  
 ## Default configuration
 ```javascript
-const { resolvePath } = require('@meenjs/utils');
+const { resolvePath } = require('@dudojs/utils');
 const en = require('./locale/en');
 const vi = require('./locale/vi');
 

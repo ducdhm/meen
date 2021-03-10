@@ -1,6 +1,6 @@
 const RateLimit = require('express-rate-limit');
 const MongoStore = require('rate-limit-mongo');
-const { newError } = require('@meenjs/utils');
+const { newError } = require('@dudojs/utils');
 
 module.exports = (app) => {
     const { config, LOCALE } = app;

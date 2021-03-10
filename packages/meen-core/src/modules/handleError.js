@@ -1,4 +1,4 @@
-const { newError } = require('@meenjs/utils');
+const { newError } = require('@dudojs/utils');
 
 module.exports = (app, config) => {
     const logger = app.logger('ERROR');

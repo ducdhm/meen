@@ -1,6 +1,6 @@
 const express = require('express');
 const http = require('http');
-const { getWinstonLogger } = require('@meenjs/utils');
+const { getWinstonLogger } = require('@dudojs/utils');
 const buildMenu = require('./methods/buildMenu');
 const initResolver = require('./methods/initResolver');
 const initUploader = require('./methods/initUploader');

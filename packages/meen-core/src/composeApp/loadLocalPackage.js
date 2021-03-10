@@ -1,5 +1,5 @@
 const path = require('path');
-const { resolvePath, getFolderList } = require('@meenjs/utils');
+const { resolvePath, getFolderList } = require('@dudojs/utils');
 
 module.exports = (app, logger) => {
     const localFolder = resolvePath('@local');
