@@ -1,4 +1,4 @@
-const { getFolderList } = require('@dudojs/utils');
+const { getFolderList } = require('@dudojs/node-utils');
 const { getTargetPath } = require('../utils/');
 const initStructure = require('init-structure');
 const path = require('path');

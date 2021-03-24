@@ -1,5 +1,5 @@
 const path = require('path');
-const { resolvePath, getFolderList } = require('@dudojs/utils');
+const { resolvePath, getFolderList } = require('@dudojs/node-utils');
 
 module.exports = (app, logger) => {
     const localFolder = resolvePath('@local');

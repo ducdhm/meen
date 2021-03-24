@@ -1,5 +1,4 @@
-const { getLogger } = require('@dudojs/utils');
-const logger = getLogger();
+const logger = require('@dudojs/logger')();
 const path = require('path');
 const updateIndex = require('update-index');
 

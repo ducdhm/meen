@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const deepExtend = require('deep-extend');
 const defaultConfig = require('./defaultConfig');
-const { resolvePath, getFileList } = require('@dudojs/utils');
+const { resolvePath, getFileList } = require('@dudojs/node-utils');
 
 module.exports = (appName, config, logger) => {
     let localFileConfig;

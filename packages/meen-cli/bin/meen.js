@@ -5,8 +5,7 @@ const program = require('commander');
 const color = require('colors/safe');
 const clear = require('clear');
 const figlet = require('figlet');
-const { getLogger } = require('@dudojs/utils')
-const logger = getLogger();
+const logger = require('@dudojs/logger')();
 
 const printBanner = () => {
     clear();

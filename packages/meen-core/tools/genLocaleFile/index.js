@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const { resolvePath } = require('@dudojs/utils');
 const locales = require('../../src/composeApp/locale');
 const Handlebars = require('handlebars');
 let langs = [];

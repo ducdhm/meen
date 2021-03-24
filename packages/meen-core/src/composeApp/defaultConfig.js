@@ -1,4 +1,4 @@
-const { resolvePath } = require('@dudojs/utils');
+const { resolvePath } = require('@dudojs/node-utils');
 const en = require('./locale/en');
 const vi = require('./locale/vi');
 

@@ -1,6 +1,6 @@
 // View config
 // --------------------------------
-const { resolvePath } = require('@dudojs/utils');
+const { resolvePath } = require('@dudojs/node-utils');
 const minifyHTML = require('express-minify-html-2');
 const { config: edgeConfig, engine } = require('express-edge');
 
