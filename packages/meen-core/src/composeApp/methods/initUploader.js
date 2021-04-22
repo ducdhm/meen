@@ -2,7 +2,7 @@ const multer = require('multer');
 const mime = require('mime-types')
 const { getUploadFileName, newError } = require('@dudojs/utils');
 
-const isValidFile = function (file, acceptedFiles) {
+const isValidFile = function (file, acceptedFiles, ignoreCheckMimeType) {
     if (!acceptedFiles || (Array.isArray(acceptedFiles) && acceptedFiles.length === 0)) {
         return true;
     }
@@ -10,11 +10,13 @@ const isValidFile = function (file, acceptedFiles) {
     let mimeType = file.mimetype;
     let baseMimeType = mimeType.replace(/\/.*$/, '');
 
-    // Verify fileName extension with mimetype
-    let realMimeType = mime.lookup(file.originalname);
-    if (realMimeType) {
-        if (realMimeType !== mimeType) {
-            return false;
+    if (!ignoreCheckMimeType) {
+        // Verify fileName extension with mimetype
+        let realMimeType = mime.lookup(file.originalname);
+        if (realMimeType) {
+            if (realMimeType !== mimeType) {
+                return false;
+            }
         }
     }
 
@@ -78,7 +80,7 @@ module.exports = (app, options) => {
     const uploader = multer({
         storage,
         fileFilter: function (req, file, next) {
-            if (isValidFile(file, acceptedFiles)) {
+            if (isValidFile(file, acceptedFiles, options.ignoreCheckMimeType)) {
                 return next(null, true);
             } else {
                 return next(newError(422, acceptedFileErrorMessage));
