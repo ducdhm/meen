@@ -50,11 +50,13 @@ module.exports = (modelName, schema, options) => {
         }
     }
 
+    const Model = mongoose.model(modelName, modelSchema);
+
     // Static
     // --------------------------------
     if (options && options.static) {
         for (let [key, value] of Object.entries(options.static)) {
-            modelSchema.statics[key] = value;
+            Model[key] = value;
         }
     }
 
