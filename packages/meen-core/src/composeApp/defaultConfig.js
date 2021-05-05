@@ -8,6 +8,7 @@ module.exports = {
         en,
         vi,
     },
+    baseUrl: '',
     preset: null,
     loadLocalPackage: {
         enabled: false,

@@ -13,6 +13,7 @@ const requireRole = require('./methods/requireRole');
 const initFormatter = require('./methods/initFormatter');
 const returnJsonError = require('./methods/returnJsonError');
 const setLocals = require('./methods/setLocals');
+const getUrl = require('./methods/getUrl');
 const loadLocalPackage = require('./loadLocalPackage');
 const getConfig = require('./getConfig');
 
@@ -94,6 +95,9 @@ module.exports = (appName, config, modules) => {
 
     // Set locals
     app.setLocals = (key, value) => setLocals(app, key, value);
+
+    // Set locals
+    app.getUrl = (url) => getUrl(app, url);
 
     // Preset
     // --------------------------------
