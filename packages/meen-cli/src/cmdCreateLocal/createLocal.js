@@ -1,5 +1,5 @@
 const { toKebabCase, toTitleCase } = require('@dudojs/utils');
-const initStructure = require('init-structure');
+const initStructure = require('@dudojs/init-structure');
 const path = require('path');
 const { getTargetPath } = require('../utils');
 
@@ -12,10 +12,14 @@ module.exports = (logger) => (options) => {
     structure[name][`index.js`] = path.join(__dirname, './template/index.hbs');
     structure[name][`package.json`] = path.join(__dirname, './template/package.json.hbs');
     structure[name][`README.md`] = path.join(__dirname, './template/readme.hbs');
-    initStructure(getTargetPath('@local'), structure, {
-        name,
-        nameTitle: toTitleCase(name),
-        nameKebab: toKebabCase(name),
+    initStructure({
+        target: getTargetPath('@local'),
+        structure,
+        fileData: {
+            name,
+            nameTitle: toTitleCase(name),
+            nameKebab: toKebabCase(name),
+        },
     });
 
     logger.info(`Done!`);

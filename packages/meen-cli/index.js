@@ -41,8 +41,6 @@ program.usage(`[command] [options] `);
 require('../src/cmdCreateModel')(program, logger);
 require('../src/cmdCreateModule')(program, logger);
 require('../src/cmdCreateLocal')(program, logger);
-// require('../src/cmdApi')(program);
-// require('../src/cmdWeb')(program);
 
 
 // Invalid command

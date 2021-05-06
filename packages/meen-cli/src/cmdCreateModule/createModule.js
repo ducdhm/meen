@@ -1,5 +1,5 @@
 const { toPascalCase, toKebabCase, toSentenceCase, toCamelCase } = require('@dudojs/utils');
-const initStructure = require('init-structure');
+const initStructure = require('@dudojs/init-structure');
 const path = require('path');
 const { getTargetPath } = require('../utils');
 
@@ -15,13 +15,17 @@ module.exports = (logger) => (options) => {
     structure['modules'][moduleName][`index.js`] = path.join(__dirname, './template/index.hbs');
     structure['modules'][moduleName][`${moduleName}.route.js`] = path.join(__dirname, `./template/route.${type}.hbs`);
     structure['modules'][moduleName][`${moduleName}.controller.js`] = path.join(__dirname, `./template/controller.${type}.hbs`);
-    initStructure(getTargetPath(app), structure, {
-        name: name,
-        nameCamel: moduleName,
-        namePascal: toPascalCase(name),
-        nameKebab: toKebabCase(name),
-        nameSentence: toSentenceCase(name),
-        nameLowerCase: toSentenceCase(name).toLowerCase(),
+    initStructure({
+        target: getTargetPath(app),
+        structure,
+        fileData: {
+            name: name,
+            nameCamel: moduleName,
+            namePascal: toPascalCase(name),
+            nameKebab: toKebabCase(name),
+            nameSentence: toSentenceCase(name),
+            nameLowerCase: toSentenceCase(name).toLowerCase(),
+        },
     });
 
     logger.info(`Done!`);

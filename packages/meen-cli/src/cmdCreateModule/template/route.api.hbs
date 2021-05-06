@@ -2,32 +2,32 @@ module.exports = (app, config, controller) => {
     const ensureLoggedIn = require('../../middlewares/ensureLoggedIn')(app);
 
     app.get(
-        '/api/{{ nameKebab }}',
-        app.redirectTo('/{{ nameKebab }}/'),
+        app.getUrl('/api/{{ nameKebab }}'),
+        app.redirectTo(app.getUrl('/{{ nameKebab }}/')),
     );
 
     app.get(
-        '/api/{{ nameKebab }}/',
+        app.getUrl('/api/{{ nameKebab }}/'),
         ensureLoggedIn,
         controller.show{{ namePascal }}List,
     );
 
     app.get(
-        '/api/{{ nameKebab }}/:id',
+        app.getUrl('/api/{{ nameKebab }}/:id'),
         ensureLoggedIn,
         controller.resolver,
         controller.show{{ namePascal }}Details,
     );
 
     app.post(
-        '/api/{{ nameKebab }}/:id',
+        app.getUrl('/api/{{ nameKebab }}/:id'),
         ensureLoggedIn,
         controller.resolver,
         controller.save{{ namePascal }},
     );
 
     app.post(
-        '/api/{{ nameKebab }}/:id/delete',
+        app.getUrl('/api/{{ nameKebab }}/:id/delete'),
         ensureLoggedIn,
         controller.resolver,
         controller.delete{{ namePascal }},
