@@ -33,8 +33,8 @@ module.exports = (app, config) => {
         delete error.stack;
 
         if (config.handleError.isJson || req.xhr || req.returnJsonError) {
-            if ((req.headers['content-type'] || '').indexOf('multipart/form-data;') !== -1) {
-                // Support Dropzone
+            // Support Dropzone
+            if (req.headers['x-dropzone'] === 'true') {
                 return res.status(error.code).json(error.message);
             } else {
                 return res.json({
