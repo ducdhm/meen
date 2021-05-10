@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const packageJson = require('../package');
+const packageJson = require('./package');
 const program = require('commander');
 const color = require('colors/safe');
 const clear = require('clear');
@@ -38,9 +38,9 @@ program.usage(`[command] [options] `);
 
 // Commands
 // -----------------------------------------
-require('../src/cmdCreateModel')(program, logger);
-require('../src/cmdCreateModule')(program, logger);
-require('../src/cmdCreateLocal')(program, logger);
+require('./src/cmdCreateModel')(program, logger);
+require('./src/cmdCreateModule')(program, logger);
+require('./src/cmdCreateLocal')(program, logger);
 
 
 // Invalid command
