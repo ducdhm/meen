@@ -29,6 +29,9 @@ module.exports = (app, config) => {
         // Add this line to include winston logging
         logger.error(`${error.code} - ${error.message} - ${req.originalUrl} - ${req.method} - ${req.ip} \n${error.stack}`);
 
+        // Add error to request
+        req.error = error;
+
         // Delete error stack
         delete error.stack;
 
