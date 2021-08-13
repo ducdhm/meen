@@ -1,6 +1,6 @@
 {
     "name": "@meenjs/cli",
-    "version": "1.3.4",
+    "version": "1.3.5",
     "description": "Create your own CMS based-on M.E.E.N stack",
     "main": "index.js",
     "bin": {
