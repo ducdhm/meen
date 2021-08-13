@@ -29,6 +29,7 @@ const printBanner = () => {
 
 // Setup program
 // -----------------------------------------
+program.name('meen');
 program.storeOptionsAsProperties(false);
 program.passCommandToAction(false);
 program.version(packageJson.version, '-v, --version', 'output the version number');
