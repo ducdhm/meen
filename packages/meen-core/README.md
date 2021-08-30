@@ -1,8 +1,10 @@
+# DEPRECATED
+`@meenjs/core` is deprecated now. Please use `@dudojs/meen` instead. Thanks!
+
 # M.E.E.N
 M.E.E.N = MongoDB + ExpressJS + EdgeJS + NodeJS
 
-
-## Methods
+# Methods
 ### `composeApp`
 ```javascript
 /**
